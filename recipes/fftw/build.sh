@@ -4,8 +4,9 @@
 
 CONFIGURE="./configure --prefix=$PREFIX --enable-shared"
 
-CONF_ARGS=" --enable-sse"
+#CONF_ARGS=" --enable-sse"
 #CONF_ARGS="--enable-sse --enable-avx"
+CONF_ARGS=" "
 
 # Single precision (fftw libraries have "f" suffix)
 $CONFIGURE --enable-float $CONF_ARGS
@@ -26,6 +27,7 @@ make install
 # tests are performed during building as they are not available in the installed package.
 # Additional tests can be run with make smallcheck and make bigcheck
 cd tests && make check-local
+
 # Additional tests can be run using the next two lines
 #make smallcheck
 #make bigcheck
