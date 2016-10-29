@@ -5,7 +5,8 @@
 CONFIGURE="./configure --prefix=$PREFIX --enable-shared"
 
 # Single precision (fftw libraries have "f" suffix)
-$CONFIGURE --enable-float --enable-sse --enable-avx
+#$CONFIGURE --enable-float --enable-sse --enable-avx
+$CONFIGURE --enable-float --enable-sse
 make
 make install
 
@@ -15,7 +16,8 @@ make install
 #make install
 
 # Double precision (fftw libraries have no precision suffix)
-$CONFIGURE --enable-sse2 --enable-avx
+#$CONFIGURE --enable-sse2 --enable-avx
+$CONFIGURE --enable-sse2
 make
 make install
 
