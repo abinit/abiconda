@@ -4,26 +4,26 @@
 
 CONFIGURE="./configure --prefix=$PREFIX --enable-shared"
 
+CONF_ARGS=" --enable-sse"
+#CONF_ARGS="--enable-sse --enable-avx"
+
 # Single precision (fftw libraries have "f" suffix)
-#$CONFIGURE --enable-float --enable-sse --enable-avx
-$CONFIGURE --enable-float --enable-sse
-make
+$CONFIGURE --enable-float $CONF_ARGS
+make -j${CPU_COUNT}
 make install
 
 # Long double precision (fftw libraries have "l" suffix)
-#$CONFIGURE --enable-long-double
-#make
+#$CONFIGURE --enable-long-double $CONF_ARGS
+#make -j${CPU_COUNT}
 #make install
 
 # Double precision (fftw libraries have no precision suffix)
-#$CONFIGURE --enable-sse2 --enable-avx
-$CONFIGURE --enable-sse2
-make
+$CONFIGURE $CONF_ARGS
+make -j${CPU_COUNT}
 make install
 
 # Test suite
-# tests are performed during building as they are not available in the
-# installed package.
+# tests are performed during building as they are not available in the installed package.
 # Additional tests can be run with make smallcheck and make bigcheck
 cd tests && make check-local
 # Additional tests can be run using the next two lines
