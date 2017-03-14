@@ -33,7 +33,9 @@ install:
   #- pip install pip --upgrade
   #- pip install -q -r requirements.txt --upgrade
 
-script: travis_wait 10 ./build_linux.sh
+#script: travis_wait 10 ./build_linux.sh
+script: ./build_linux.sh
+
 
 notifications:
   email:
