@@ -20,5 +20,5 @@ conda update -q conda
 conda info -a
 # Replace dep1 dep2 ... with your dependencies
 # conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION dep1 dep2 ...
-conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
-source activate test-environment
+#conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+#source activate test-environment
