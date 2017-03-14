@@ -75,6 +75,9 @@ LINALG_LIBS="-L$PREFIX/lib -lopenblas -lpthread"
 --with-dft-flavor=libxc
 #--with-fft-flavor="${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
 #--with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
+
+echo CC=`which ${CC}`
+echo FC=`which ${FC}`
       
 make -j${CPU_COUNT}
 
