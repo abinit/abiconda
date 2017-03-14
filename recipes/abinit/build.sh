@@ -97,7 +97,6 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
     #--with-linalg-flavor="atlas" --with-linalg-libs="-L/usr/lib64 -llapack -lf77blas -lcblas -latlas"
     #--with-dft-flavor="atompaw+libxc+wannier90" --enable-gw-dpc="yes"
 
-      
 make -j${CPU_COUNT}
 
 # Test suite
