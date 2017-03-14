@@ -10,6 +10,11 @@ source:
 
 requirements:
     build:
+        - gcc  # [osx]
+        - libgfortran  # [linux]
+    run:
+        - libgfortran  # [not win]
+
 
 # Note: tests are run when building the package, they are not accessible
 # in the installed package.
