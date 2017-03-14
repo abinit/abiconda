@@ -91,17 +91,18 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
     --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
     --with-trio-flavor=netcdf \
     --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
-    --with-dft-flavor="libxc" \
-    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}"
-    #--with-dft-flavor="libxc+wannier90-fallback" \
+    --with-dft-flavor="libxc+wannier90-fallback" \
+    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}" \
+    --enable-gw-dpc="yes"
     #--with-linalg-flavor="atlas" --with-linalg-libs="-L/usr/lib64 -llapack -lf77blas -lcblas -latlas"
-    #--with-dft-flavor="atompaw+libxc+wannier90" --enable-gw-dpc="yes"
 
 make -j${CPU_COUNT}
 
 # Test suite
 # tests are performed during building as they are not available in the installed package.
-#make check
+make check 
+./tests/runtests.py v1 v2 -j${CPU_COUNT}
+#./tests/runtests.py paral -n2
 
 # Install binaries (don't copy test files to reduce size of the package)
 make install-exec
