@@ -22,8 +22,10 @@ export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 # the ld(1) -headerpad_max_install_names option.
 export FC_LDFLAGS_EXTRA="-Wl,-headerpad_max_install_names"
 
+# FIXME: Debug mode
+
 export CFLAGS="$CFLAGS -g -O2 -fPIC -I$PREFIX/include"
-export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib" 
+export FCFLAGS="-O0 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib" 
 # -fPIC or -fpic
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 
@@ -59,22 +61,42 @@ fi
 #FFT_LIBS=${LINALG_INCS}
 
 # FFTW3
-FFT_FLAVOR="none"
-FFT_INCS="-I$PREFIX/include"
-FFT_LIBS="-L$PREFIX/lib -lfftw3f -lfftw3"
+FFT_FLAVOR="fftw3"
+FFT_INCS="-I${PREFIX}/include"
+FFT_LIBS="-L${PREFIX}/lib -lfftw3f -lfftw3"
 
 # Open BLAS
-LINALG_FLAVOR="none"
-LINALG_LIBS="-L$PREFIX/lib -lopenblas -lpthread"
+LINALG_FLAVOR="custom"
+LINALG_LIBS="-L${PREFIX}/lib -lopenblas -lpthread"
 
-./configure --prefix=${PREFIX} \
---enable-mpi=no \
---with-linalg-flavor=none \
---with-fft-flavor=none \
---with-trio-flavor=netcdf \
---with-dft-flavor=libxc
-#--with-fft-flavor="${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
-#--with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
+
+NC_INCS="-I${PREFIX}/include"
+NC_LIBS="-L${PREFIX}/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5"
+
+
+# LibXC library 
+XC_INCS="-I${PREFIX}/include"
+XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
+
+
+# Version with internal fallbacks
+#./configure --prefix=${PREFIX} --enable-mpi=no \
+#    --with-linalg-flavor=none \
+#    --with-fft-flavor=none \
+#    --with-dft-flavor=libxc-fallback \
+#    --with-trio-flavor=netcdf-fallback
+
+./configure --prefix=${PREFIX} --enable-mpi=no \
+    --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
+    --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
+    --with-trio-flavor=netcdf \
+    --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
+    --with-dft-flavor="libxc" \
+    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}"
+    #--with-dft-flavor="libxc+wannier90-fallback" \
+    #--with-linalg-flavor="atlas" --with-linalg-libs="-L/usr/lib64 -llapack -lf77blas -lcblas -latlas"
+    #--with-dft-flavor="atompaw+libxc+wannier90" --enable-gw-dpc="yes"
+
       
 make -j${CPU_COUNT}
 

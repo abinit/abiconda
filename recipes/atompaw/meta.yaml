@@ -1,0 +1,31 @@
+package:
+    name: atompaw
+    version: "4.0.0.14"
+
+source:
+    fn: atompaw-4.0.0.14.tar.gz
+    url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-4.0.0.14.tar.gz
+    md5: a80cf8cf408fd52ad3e71c2abe067aae
+
+requirements:
+    build:
+        - gcc  # [osx]
+        - libgfortran  # [linux]
+        - openblas
+        - libxc
+    run:
+        - libgfortran  # [not win]
+        - openblas
+        - libxc
+
+# Note: tests are run when building the package, they are not accessible
+# in the installed package.
+
+about:
+    home: http://users.wfu.edu/natalie/papers/pwpaw/man.html
+    license: GNU General Public License (GPL)
+    summary: | 
+        A Projector Augmented Wave (PAW) code for generating atom-centered functions.
+        Please check:
+        Official website : http://pwpaw.wfu.edu
+        User's guide : ~/doc/atompaw-usersguide.pdf

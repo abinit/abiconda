@@ -1,0 +1,30 @@
+package:
+    name: oncvpsp
+    version: "3.2.3"
+
+source:
+    fn: oncvpsp-3.2.3b.tar.gz
+    url: http://www.mat-simresearch.com/oncvpsp-3.2.3b.tar.gz
+    md5: 914e09537da9978d7fd011d3d4983497
+
+requirements:
+    build:
+        - gcc  # [osx]
+        - libgfortran  # [linux]
+        - openblas
+        - libxc
+    run:
+        - libgfortran  # [not win]
+        - openblas
+        - libxc
+
+# Note: tests are run when building the package, they are not accessible
+# in the installed package.
+
+about:
+    home: http://www.mat-simresearch.com/
+    license: GNU General Public License (GPL)
+    summary: | 
+        Open-source pseudopotential code ONCVPSP
+        to generate norm-conserving pseudopotentials using the approach 
+        described in Phys. Rev. B 88, 085117 (2013)).

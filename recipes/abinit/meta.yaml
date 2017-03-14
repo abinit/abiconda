@@ -17,18 +17,25 @@ build:
 
 requirements:
   build:
-    #- gcc 
+    - gcc 
     - libgcc 
     - libgfortran
-    #- fftw
-    #- openblas
+    - openblas
+    - fftw
+    - hdf5
+    - netcdf4
+    - netcdf-fortran
+    - libxc
 
   run:
     #- gcc  
     - libgcc 
     - libgfortran 
-    #- fftw
-    #- openblas
+    - openblas
+    - fftw
+    - netcdf4
+    - netcdf-fortran
+    - libxc
 
 #test:
 #  commands:
