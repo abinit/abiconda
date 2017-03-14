@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# inspired by build script for Arch Linux fftw pacakge:
+# inspired by build script for Arch Linux fftw package:
 # https://projects.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/fftw
 
 CONFIGURE="./configure --prefix=$PREFIX --enable-shared"

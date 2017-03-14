@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 CONFIGURE="./configure --prefix=$PREFIX"
 
 $CONFIGURE
