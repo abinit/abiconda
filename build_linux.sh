@@ -1,9 +1,9 @@
 set -e
 
-conda build recipes/fftw
-conda build recipes/libxc
-conda build recipes/oncvpsp
-conda build recipes/atompaw
+#conda build recipes/fftw
+#conda build recipes/libxc
+#conda build recipes/oncvpsp
+#conda build recipes/atompaw
 conda build recipes/abinit
 
 #cd recipes
