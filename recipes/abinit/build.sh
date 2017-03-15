@@ -86,7 +86,8 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
 #    --with-dft-flavor=libxc-fallback \
 #    --with-trio-flavor=netcdf-fallback
 
-./configure --prefix=${PREFIX} --enable-mpi=no \
+./configure --prefix=${PREFIX} \
+    --enable-mpi="yes" --enable-mpi-io="yes" --with-mpi-prefix=${PREFIX} \
     --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
     --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
     --with-trio-flavor=netcdf \
@@ -96,13 +97,13 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
     --enable-gw-dpc="yes"
     #--with-linalg-flavor="atlas" --with-linalg-libs="-L/usr/lib64 -llapack -lf77blas -lcblas -latlas"
 
-make -j${CPU_COUNT}
+make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
 # Test suite
 # tests are performed during building as they are not available in the installed package.
 make check 
-./tests/runtests.py v1 v2 -j${CPU_COUNT}
-#./tests/runtests.py paral -n2
+./tests/runtests.py v1 v2 -j${CPU_COUNT} -o1 -n1
+./tests/runtests.py paral -n2 -o1
 
 # Install binaries (don't copy test files to reduce size of the package)
 make install-exec

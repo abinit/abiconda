@@ -25,6 +25,7 @@ requirements:
     - netcdf4
     - netcdf-fortran
     - libxc
+    - mpich
 
   run:
     - libgcc 
@@ -34,6 +35,7 @@ requirements:
     - netcdf4
     - netcdf-fortran
     - libxc
+    - mpich
 
 #test:
 #  commands:
