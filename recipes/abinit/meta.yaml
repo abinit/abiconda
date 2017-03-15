@@ -1,11 +1,10 @@
 package:
     name: abinit
-    version: 8.0.8
+    version: 8.2.2
 
 source:
-    fn: abinit-8.0.8.tar.gz
-    sha256: 41db70e8a80cbbf30f7049712aba5ed36d915b6eead846c1f8b70a0379615a84
-    url: http://ftp.abinit.org/abinit-8.0.8.tar.gz
+    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
+    url: http://ftp.abinit.org/abinit-8.2.2.tar.gz
 
 build:
     number: '0'
@@ -28,7 +27,6 @@ requirements:
     - libxc
 
   run:
-    #- gcc  
     - libgcc 
     - libgfortran 
     - openblas
