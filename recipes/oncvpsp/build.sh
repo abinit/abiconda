@@ -7,10 +7,10 @@ XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
 
 # Patch blas section
-sed -i "s|-L/usr/local/lapack/lib -llapack -lrefblas|${LINALG_LIBS} |" make.inc
+sed -i".bkp" "s|-L/usr/local/lapack/lib -llapack -lrefblas|${LINALG_LIBS} |" make.inc
 
 # Activate libxc support
-sed -i 's|exc_libxc_stub.o|functionals.o exc_libxc.o|' make.inc
+sed -i".bkp" 's|exc_libxc_stub.o|functionals.o exc_libxc.o|' make.inc
 echo "LIBS += ${XC_LIBS}" >> make.inc
 echo "FFLAGS += ${XC_INCS}" >> make.inc
 

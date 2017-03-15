@@ -10,10 +10,12 @@ source:
 requirements:
     build:
         - gcc  # [osx]
+        - libgcc 
         - libgfortran  # [linux]
         - openblas
         - libxc
     run:
+        - libgcc       # [osx]
         - libgfortran  # [not win]
         - openblas
         - libxc

@@ -14,6 +14,7 @@ else
 fi
 
 
+# conda-installed gfortran on OSX: builds fail at runtime 
 # https://github.com/ContinuumIO/anaconda-issues/issues/739
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 

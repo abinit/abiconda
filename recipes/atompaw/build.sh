@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# conda-installed gfortran on OSX: builds fail at runtime 
+# https://github.com/ContinuumIO/anaconda-issues/issues/739
+export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
+
 # LibXC library 
 XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
@@ -16,3 +20,6 @@ make install
 
 # Test suite
 make check
+
+
+unset LDFLAGS
