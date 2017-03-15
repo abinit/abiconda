@@ -102,7 +102,7 @@ make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 # Test suite
 # tests are performed during building as they are not available in the installed package.
 make check 
-./tests/runtests.py v1 v2 -j${CPU_COUNT} -o1 -n1
+./tests/runtests.py v1 -j${CPU_COUNT} -o1 -n1
 ./tests/runtests.py paral -n2 -o1
 
 # Install binaries (don't copy test files to reduce size of the package)
