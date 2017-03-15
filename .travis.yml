@@ -21,6 +21,7 @@ install:
   - conda install conda-build anaconda-client
   - conda upgrade conda-build
   - conda config --set anaconda_upload no
+  - conda config --add channels conda-forge
   - conda install gcc
   
   #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -43,3 +44,4 @@ notifications:
       - gmatteo@gmail.com
     on_success: change
     on_failure: always
+
