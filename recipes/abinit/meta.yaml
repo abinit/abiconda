@@ -3,7 +3,7 @@ package:
     version: 8.2.2
 
 source:
-    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
+    #sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
     url: http://ftp.abinit.org/abinit-8.2.2.tar.gz
 
 build:
