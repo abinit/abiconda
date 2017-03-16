@@ -1,10 +1,15 @@
+{% set version = "8.2.2" %}
+{% set libxc_version = '2.2.2' %}
+{% set mpi = 'mpich' %}
+
 package:
     name: abinit
-    version: 8.2.2
+    version: {{ version }}
 
 source:
-    #sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
-    url: http://ftp.abinit.org/abinit-8.2.2.tar.gz
+    fn: abinit-{{ version }}.tar.gz
+    url: http://ftp.abinit.org/abinit-{{ version }.tar.gz
+    sha256: foobar
 
 build:
     number: '0'
@@ -24,8 +29,8 @@ requirements:
     - hdf5
     - netcdf4
     - netcdf-fortran
-    - libxc
-    - mpich
+    - libxc  {{ libxc_version }}
+    - {{ mpi }}
 
   run:
     - libgcc 
@@ -34,17 +39,17 @@ requirements:
     - fftw
     - netcdf4
     - netcdf-fortran
-    - libxc
-    - mpich
+    - libxc  {{ libxc_version }}
+    - {{ mpi }}
 
-#test:
-#  commands:
-#    - make check
+test:
+  commands:
+    - test -x ${PREFIX}/bin/abinit
+    - test -x ${PREFIX}/bin/anaddb
 
 about:
     home: http://www.abinit.org/
     license: GPL
-    #license_file: LICENSE.txt
     summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method." 
 
     # The remaining entries in this section are optional, but recommended
@@ -66,5 +71,4 @@ about:
 
 extra:
     recipe-maintainers:
-        # GitHub IDs for maintainers of the recipe.
         - gmatteo

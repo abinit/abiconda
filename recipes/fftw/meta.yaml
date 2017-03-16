@@ -1,25 +1,36 @@
 # Credits to jeanconn for the package https://binstar.org/jeanconn/fftw
+{% set version = "3.3.6" %}
+
 package:
     name: fftw
-    version: "3.3.4"
+    version: {{ version }}
 
 source:
-    fn: fftw-3.3.4.tar.gz
-    url: http://www.fftw.org/fftw-3.3.4.tar.gz
-    md5: 2edab8c06b24feeb3b82bbb3ebf3e7b3
+    fn: fftw-{{ version }}.tar.gz
+    url: http://www.fftw.org/fftw-{{ version }}-pl1.tar.gz
+    sha256: 1ef4aa8427d9785839bc767f3eb6a84fcb5e9a37c31ed77a04e7e047519a183d
 
 requirements:
     build:
-        - gcc  # [osx]
-        - libgfortran  # [linux]
-    #run:
-    #    - libgfortran  # [not win]
+        - gcc  
+        - libgfortran 
 
 
-# Note: tests are run when building the package, they are not accessible
-# in the installed package.
+# Note: tests are run when building the package, they are not accessible in the installed package.
+test:
+  commands:
+    - exit $(test -f ${PREFIX}/lib/libfftw3f.a)          # [not win]
+    - exit $(test -f ${PREFIX}/lib/libfftw3.a)           # [not win]
+    #- exit $(test -f ${PREFIX}/lib/libfftw3l.a)          # [not win]
+    #- exit $(test -f ${PREFIX}/lib/libfftw3f_threads.a)  # [not win]
+    #- exit $(test -f ${PREFIX}/lib/libfftw3_threads.a)   # [not win]
+    #- exit $(test -f ${PREFIX}/lib/libfftw3l_threads.a)  # [not win]
 
 about:
     home: http://fftw.org
-    license: GNU General Public License (GPL)
+    license: GPL 2
     summary: 'The fastest Fourier transform in the west.'
+
+extra:
+  recipe-maintainers:
+    - gmatteo

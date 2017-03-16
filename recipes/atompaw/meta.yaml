@@ -1,33 +1,41 @@
+{% set version = "4.0.0.14" %}
+{% set libxc_version = '2.2.2' %}
+
 package:
     name: atompaw
-    version: "4.0.0.14"
+    version: {{ version }}
 
 source:
-    fn: atompaw-4.0.0.14.tar.gz
-    url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-4.0.0.14.tar.gz
-    md5: a80cf8cf408fd52ad3e71c2abe067aae
+    fn: atompaw-{{ version }}.tar.gz
+    url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-{{ version}}.tar.gz
+    sha256: foobar
 
 requirements:
     build:
-        - gcc  # [osx]
+        - gcc  
         - libgcc
-        - libgfortran  # [linux]
+        - libgfortran  
         - openblas
-        - libxc
+        - libxc  {{ libxc_version }}
     run:
-        - libgcc       # [osx]
-        - libgfortran  # [not win]
+        - libgcc       
+        - libgfortran  
         - openblas
-        - libxc
+        - libxc  {{ libxc_version }}
 
-# Note: tests are run when building the package, they are not accessible
-# in the installed package.
+# Note: tests are run when building the package, they are not accessible in the installed package.
+test:
+  commands:
+    - test -x ${PREFIX}/bin/atompaw
 
 about:
     home: http://users.wfu.edu/natalie/papers/pwpaw/man.html
-    license: GNU General Public License (GPL)
+    license: GPL 
     summary: | 
         A Projector Augmented Wave (PAW) code for generating atom-centered functions.
-        Please check:
-        Official website : http://pwpaw.wfu.edu
-        User's guide : ~/doc/atompaw-usersguide.pdf
+        Official website: http://pwpaw.wfu.edu
+        User's guide: ~/doc/atompaw-usersguide.pdf
+
+extra:
+  recipe-maintainers:
+    - gmatteo

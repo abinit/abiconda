@@ -21,5 +21,4 @@ make install
 # Test suite
 make check
 
-
 unset LDFLAGS

@@ -5,7 +5,6 @@ CONFIGURE="./configure --prefix=$PREFIX"
 # https://github.com/ContinuumIO/anaconda-issues/issues/739
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 
-
 $CONFIGURE
 make -j${CPU_COUNT}
 make install
