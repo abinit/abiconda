@@ -7,8 +7,17 @@ package:
 
 source:
     fn: atompaw-{{ version }}.tar.gz
-    url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-{{ version}}.tar.gz
-    sha256: foobar
+    url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-{{ version }}.tar.gz
+    sha256: 8163974c8af93d8257b2e8db90eda635da64055faef3543cd4e74eb4a4a73d77
+
+build:
+    number: '0'
+    script: python setup.py install --single-version-externally-managed --record record.txt
+    # See https://github.com/ContinuumIO/anaconda-issues/issues/739
+    rpaths:
+      - lib/
+      - lib64/
+
 
 requirements:
     build:

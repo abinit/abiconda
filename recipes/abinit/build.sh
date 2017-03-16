@@ -23,10 +23,8 @@ export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 # the ld(1) -headerpad_max_install_names option.
 export FC_LDFLAGS_EXTRA="-Wl,-headerpad_max_install_names"
 
-# FIXME: Debug mode
-
 export CFLAGS="$CFLAGS -g -O2 -fPIC -I$PREFIX/include"
-export FCFLAGS="-O0 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib" 
+export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib" 
 # -fPIC or -fpic
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 

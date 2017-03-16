@@ -8,8 +8,8 @@ package:
 
 source:
     fn: abinit-{{ version }}.tar.gz
-    url: http://ftp.abinit.org/abinit-{{ version }.tar.gz
-    sha256: foobar
+    url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
+    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
 
 build:
     number: '0'

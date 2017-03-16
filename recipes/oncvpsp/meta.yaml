@@ -8,7 +8,7 @@ package:
 source:
     fn: oncvpsp-{{ version }}.tar.gz
     url: http://www.mat-simresearch.com/oncvpsp-{{ version }}.tar.gz
-    sha256: foobar
+    sha256: c9ef32f399361802b7a0fddd38feaa9ca113f48e018a3e3999402ac9e8aed2fc
 
 requirements:
     build:
