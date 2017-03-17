@@ -1,9 +1,7 @@
 {% set version = "8.2.2" %}
-{% set libxc_version = '2.2.2' %}
-{% set mpi = 'mpich' %}
 
 package:
-    name: abinit
+    name: abinit_seq
     version: {{ version }}
 
 source:
@@ -24,23 +22,10 @@ requirements:
     - gcc 
     - libgcc 
     - libgfortran
-    - openblas
-    - fftw
-    - hdf5
-    - netcdf4
-    - netcdf-fortran
-    - libxc {{ libxc_version }}
-    - {{ mpi }}
 
   run:
     - libgcc 
     - libgfortran 
-    - openblas
-    - fftw
-    - netcdf4
-    - netcdf-fortran
-    - libxc {{ libxc_version }}
-    - {{ mpi }}
 
 test:
   commands:

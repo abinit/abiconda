@@ -25,6 +25,11 @@ test:
     #- exit $(test -f ${PREFIX}/lib/libfftw3f_threads.a)  # [not win]
     #- exit $(test -f ${PREFIX}/lib/libfftw3_threads.a)   # [not win]
     #- exit $(test -f ${PREFIX}/lib/libfftw3l_threads.a)  # [not win]
+    - conda inspect linkages -p ${PREFIX} libfftw3f # [not win]
+    - conda inspect linkages -p ${PREFIX} libfftw3  # [not win]
+    - conda inspect objects -p ${PREFIX} libfftw3f  # [osx]
+    - conda inspect objects -p ${PREFIX} libfftw3   # [osx]
+
 
 about:
     home: http://fftw.org
