@@ -8,7 +8,6 @@ package:
 
 build:
     number: 0
-    string: mpi_{{ mpi }}_libxc_{{ libxc_version }}
     script: python setup.py install --single-version-externally-managed --record record.txt
     # See https://github.com/ContinuumIO/anaconda-issues/issues/739
     rpaths:
