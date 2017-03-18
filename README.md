@@ -130,7 +130,7 @@ To install a particular version of Abinit use:
       ldd (GNU libc) 2.12
 
   This means that the abiconda executable requires a C library that is not compatible with the one available on your system.
-  At the time of writing, we build with GNU libc == 2.17
+  At the time of writing, we build executables and libraries with GNU libc 2.12.
 
   If the C-library is recent, we can easily solve the problem by providing executables compiled with the new C-library.
   If, on the other hand, the C library is too old, we have a serious problem because supporting all the possible versions

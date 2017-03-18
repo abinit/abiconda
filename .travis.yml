@@ -1,6 +1,6 @@
 branches:
   only:
-    - foobar
+    - master
 
 language: python
 
@@ -10,11 +10,10 @@ matrix:
     - os: linux
       python: 2.7
       env: PYTHON_VERSION=2.7
-    #- os: osx
-    #  python: 2.7
-    #  language: generic
-    #  language: generic
-    #  env: PYTHON_VERSION=2.7
+    - os: osx
+      python: 2.7
+      language: generic
+      env: PYTHON_VERSION=2.7
 
 sudo: required
 
