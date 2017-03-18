@@ -26,10 +26,10 @@ test:
   commands:
     - test -f ${PREFIX}/lib/libxc.a        # [not win]
     - test -f ${PREFIX}/lib/libxcf90.a     # [not win]
-    - conda inspect linkages -p ${PREFIX} libxc  # [not win]
-    - conda inspect linkages -p ${PREFIX} libxcf90  # [not win]
-    - conda inspect objects -p ${PREFIX} libnetcdf  # [osx]
-    - conda inspect objects -p ${PREFIX} libxcf90  # [osx]
+    #- conda inspect linkages -p ${PREFIX} libxc  # [not win]
+    #- conda inspect linkages -p ${PREFIX} libxcf90  # [not win]
+    #- conda inspect objects -p ${PREFIX} libxc  # [osx]
+    #- conda inspect objects -p ${PREFIX} libxcf90  # [osx]
 
 about:
     home: http://www.tddft.org/programs/octopus/wiki/index.php/Libxc
