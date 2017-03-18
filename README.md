@@ -67,14 +67,14 @@ to get the list of dynamic libraries linked to the application whereas macOSx ca
 The output of ``otool`` indicates that this executable is linked against ``openblas``, 
 ``MPI`` (mpich), ``FFTW`` and ``netcdf4+hdf5``.
 The BLAS library is threaded and the number of threads used at runtime is defined by the
-environment variable ``OMP\_NUM\_THREADS``. We suggest to use
+environment variable ``OMP_NUM_THREADS``. We suggest to add:
 
     export OMP_NUM_THREADS=1
 
 to your ``.bash_profile`` because by default the OpenMP library uses all the available cores
-if this variable is not define.
+if this variable is not defined.
 
-Alternatively, one can install the sequential version (minimal dependencies, no parallelism) with: 
+Alternatively, one can install the **sequential** version (minimal dependencies, no parallelism) with: 
 
     $ conda install abinit_seq -c gmatteo
 
@@ -93,51 +93,51 @@ To install a particular version of Abinit use:
 
 ## Troubleshooting
 
-All the conda applications should use libraries installed inside the anaconda directory. 
-As a consequence, the use of the ``$LD\_LIBRARY\_PATH`` (linux) or 
-``$DYLD\_LIBRARY\_PATH`` (MacOsx) environment variables is strongly discouraged 
-as it can lead to runtime errors and malfunctioning.
-So it is recommended to unset them if they are set, unless you know what you are doing. 
-``conda info -a`` will show what these are set to (on the relevant operating system).
+- All the conda applications should use libraries installed inside the anaconda directory. 
+  As a consequence, the use of the ``$LD_LIBRARY_PATH`` (linux) or 
+  ``$DYLD_LIBRARY_PATH`` (MacOsx) environment variables is strongly discouraged 
+  as it can lead to runtime errors and malfunctioning.
+  So it is recommended to unset them if they are set, unless you know what you are doing
+  (use ``conda info -a`` to get info on your environment).
 
-The parallel version of Abinit should be launched with the ``mpirun`` executable provided by conda so
-make sure that the bin directory of anaconda comes before the other directories.
-This should be the case if
+- The parallel version of Abinit should be launched with the ``mpirun`` executable provided by conda so
+  make sure that the bin directory of anaconda comes before the other directories and use:
 
-    export PATH="/Users/gmatteo/anaconda2/bin:$PATH"
+    $ which mpirun
+    ~/anaconda2/envs/abienv/bin/mpirun
 
-The majority of the libraries required by the ``abiconda`` applications (including ``libgcc``
-and ``libgfortran``) are automatically installed in your conda environment when you issue 
-``conda install APPNAME -c gmatteo``.
-In principle, these libraries should be compatible with the abiconda executables but incompatibilities may appear
-when the ``conda`` developers decided to upgrade the ``gcc`` version or if other **tricky** dependencies 
-such as the MPI library are upgraded upstream.
-In this case, please contact ... so that we can provide new pre-compiled versions compatible with the 
-new software stack.
-Alternatively, you may try the sequential version ``abinit_seq`` in which the number of external dependencies 
-and therefore the probability of linkage problems is significantly reduced.
+- The majority of the libraries required by the ``abiconda`` applications (including ``libgcc``
+  and ``libgfortran``) are automatically installed in your conda environment when you issue 
+  ``conda install APPNAME -c gmatteo``.
+  In principle, these libraries should be compatible with the abiconda executables but incompatibilities may appear
+  when the ``conda`` developers decided to upgrade the ``gcc`` version or if other **tricky** dependencies 
+  such as the MPI library are upgraded upstream.
+  In this case, contact us and we will try to provide new pre-compiled versions compatible with the 
+  new software stack.
+  Alternatively, you may try the sequential version ``abinit_seq`` in which the number of external dependencies 
+  and therefore the probability of linkage problems is significantly reduced.
 
-Note, however, that all the dependencies are provided by conda with the exception of the C standard library
-(``libc`` on linux, ``libSystem.B.dylib`` on MacOsx).
-If the C library provided by your OS is too old or too recent, you will get error messages such as:
+  Note, however, that all the dependencies are provided by conda with the exception of the C standard library
+  (``libc`` on linux, ``libSystem.B.dylib`` on MacOsx).
+  If the C library provided by your OS is too old or too recent, you will get error messages such as:
 
-    $ abinit
-    abinit: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by abinit)
+      $ abinit
+      abinit: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by abinit)
 
-when you try to execute the application. ``ldd`` indeed shows that our system uses ``libc 2.12`` 
+  when you try to execute the application. ``ldd`` indeed shows that our system uses ``libc 2.12`` 
 
-    $ ldd --version
-    ldd (GNU libc) 2.12
+      $ ldd --version
+      ldd (GNU libc) 2.12
 
-This means that the abiconda executable requires a C library that is not compatible with the one available by your system.
-At the time of writing, we build with GNU libc == 2.17
+  This means that the abiconda executable requires a C library that is not compatible with the one available by your system.
+  At the time of writing, we build with GNU libc == 2.17
 
-If the C-library is recent, we can easily solve the problem by providing executables compiled with the new C-library.
-If, on the other hand, the C library is too old, we have a serious problem because supporting all the possible versions
-it's not an easy task (we should set up a machines with the same C-library as the one used on your system,
-find a version of conda that works with this configuration and finally try to recompile the application and the 
-corresponding libraries)
-In this case you can either try an old version of the Abinit executables (start from the oldest one) 
-or, if anything works, you will have to compile from source.
+  If the C-library is recent, we can easily solve the problem by providing executables compiled with the new C-library.
+  If, on the other hand, the C library is too old, we have a serious problem because supporting all the possible versions
+  it's not an easy task (we should set up a machines with the same C-library as the one used on your system,
+  find a version of conda that works with this configuration and finally try to recompile the application and the 
+  corresponding libraries)
+  In this case you can either try an old version of the Abinit executables (start from the oldest one) 
+  or, if anything works, you will have to compile from source.
 
 For more info, please consult the [official conda documentation](https://conda.io/docs/troubleshooting.html)
