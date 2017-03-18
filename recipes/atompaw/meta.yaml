@@ -41,8 +41,8 @@ test:
     - test -x ${PREFIX}/bin/atompaw
     - test -x ${PREFIX}/bin/graphatom
     - test -f ${PREFIX}/lib/libatompaw.a    # [not win]
-    - conda inspect linkages -p ${PREFIX} libatompaw # [not win]
-    - conda inspect objects -p ${PREFIX} libatompaw  # [osx]
+    #- conda inspect linkages -p ${PREFIX} libatompaw # [not win]
+    #- conda inspect objects -p ${PREFIX} libatompaw  # [osx]
 
 about:
     home: http://users.wfu.edu/natalie/papers/pwpaw/man.html
