@@ -14,7 +14,7 @@ export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib"
 # -fPIC or -fpic
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 
-# Version with internal fallbacks
+# Version with internal fallbacks (static linkage)
 ./configure --prefix=${PREFIX} --enable-mpi=no \
     --with-linalg-flavor="none" \
     --with-fft-flavor="none" \
@@ -24,7 +24,6 @@ export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib"
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
 # Test suite
-# tests are performed during building as they are not available in the installed package.
 make check 
 ./tests/runtests.py v1 -j${CPU_COUNT} -o1 -n1
 #./tests/runtests.py paral -n2 -o1
@@ -32,8 +31,6 @@ make check
 # Install binaries (don't copy test files to reduce size of the package)
 make install-exec
 
-#unset FC
-#unset CC
 unset CFLAGS
 unset FCFLAGS
 unset LDFLAGS

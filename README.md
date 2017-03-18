@@ -103,8 +103,8 @@ To install a particular version of Abinit use:
 - The parallel version of Abinit should be launched with the ``mpirun`` executable provided by conda so
   make sure that the bin directory of anaconda comes before the other directories and use:
 
-    $ which mpirun
-    ~/anaconda2/envs/abienv/bin/mpirun
+      $ which mpirun
+      ~/anaconda2/envs/abienv/bin/mpirun
 
 - The majority of the libraries required by the ``abiconda`` applications (including ``libgcc``
   and ``libgfortran``) are automatically installed in your conda environment when you issue 
@@ -129,7 +129,7 @@ To install a particular version of Abinit use:
       $ ldd --version
       ldd (GNU libc) 2.12
 
-  This means that the abiconda executable requires a C library that is not compatible with the one available by your system.
+  This means that the abiconda executable requires a C library that is not compatible with the one available on your system.
   At the time of writing, we build with GNU libc == 2.17
 
   If the C-library is recent, we can easily solve the problem by providing executables compiled with the new C-library.

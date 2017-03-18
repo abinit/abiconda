@@ -1,18 +1,4 @@
 #!/usr/bin/env bash
-#https://github.com/conda-forge/fftw-feedstock/blob/ad8bc8c5661447db646ff3c48fed3dd4a23edc5a/recipe/build.sh
-
-# Depending on our platform, shared libraries end with either .so or .dylib
-#if [[ `uname` == 'Darwin' ]]; then
-#    # Use homebrew
-#    export CC=gcc-5
-#    export FC=gfortran-5
-#    #export CC=gcc
-#    #export FC=gfortran
-#else
-#    export CC=gcc
-#    export FC=gfortran
-#fi
-
 
 # conda-installed gfortran on OSX: builds fail at runtime 
 # https://github.com/ContinuumIO/anaconda-issues/issues/739
@@ -28,37 +14,6 @@ export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib"
 # -fPIC or -fpic
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 
-#LIBGFORTRAN_DIR=~/anaconda2/lib
-#LIBGFORTRAN_DIR=/usr/local/opt/gcc/lib/gcc/5
-#LIBGFORTRAN_NAME=libgfortran.3.dylib
-
-#LIBGCC_S_DIR=~/anaconda2/lib
-#LIBGCC_S_DIR=/usr/local/lib/gcc/5
-#LIBGCC_S_NAME=libgcc_s.1.dylib 
-
-#LIBQUADMATH_DIR=~/anaconda2/lib
-#LIBQUADMATH_DIR=/usr/local/opt/gcc/lib/gcc/5
-#LIBQUADMATH_NAME=libquadmath.0.dylib
-
-#LIBGFORTRAN_PATH=${LIBGFORTRAN_DIR}/${LIBGFORTRAN_NAME}
-#LIBGCC_S_PATH=${LIBGCC_S_DIR}/${LIBGCC_S_NAME}
-#LIBQUADMATH_PATH=${LIBQUADMATH_DIR}/${LIBQUADMATH_NAME}
-
-#if [[ `uname` == 'Darwin' ]]; then
-#    mkdir -p ${PREFIX}/lib
-#    cp ~/anaconda2/lib/${LIBGFORTRAN_NAME} ${PREFIX}/lib/${LIBGFORTRAN_NAME}
-#    cp ~/anaconda2/lib/${LIBQUADMATH_NAME} ${PREFIX}/lib/${LIBQUADMATH_NAME}
-#    cp ~/anaconda2/lib/${LIBGCC_S_NAME}    ${PREFIX}/lib/${LIBGCC_S_NAME}
-#fi
-
-# https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor
-# Linux-GCC with MKL dynamically
-#export LINALG_LIBS="-Wl,--no-as-needed -L${MKLROOT}/lib/intel64 \
-#-lmkl_gf_lp64 -lmkl_core -lmkl_sequential -lpthread -lm -ldl"
-#FCFLAS="${FCFLAS} -m64 -I${MKLROOT}/include"
-#FFT_INCS=${LINALG_INCS}
-#FFT_LIBS=${LINALG_INCS}
-
 # FFTW3
 FFT_FLAVOR="fftw3"
 FFT_INCS="-I${PREFIX}/include"
@@ -68,22 +23,12 @@ FFT_LIBS="-L${PREFIX}/lib -lfftw3f -lfftw3"
 LINALG_FLAVOR="custom"
 LINALG_LIBS="-L${PREFIX}/lib -lopenblas -lpthread"
 
-
 NC_INCS="-I${PREFIX}/include"
 NC_LIBS="-L${PREFIX}/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5"
-
 
 # LibXC library 
 XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
-
-
-# Version with internal fallbacks
-#./configure --prefix=${PREFIX} --enable-mpi=no \
-#    --with-linalg-flavor=none \
-#    --with-fft-flavor=none \
-#    --with-dft-flavor=libxc-fallback \
-#    --with-trio-flavor=netcdf-fallback
 
 ./configure --prefix=${PREFIX} \
     --enable-mpi="yes" --enable-mpi-io="yes" --with-mpi-prefix=${PREFIX} \
@@ -94,12 +39,10 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
     --with-dft-flavor="libxc+wannier90-fallback" \
     --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}" \
     --enable-gw-dpc="yes"
-    #--with-linalg-flavor="atlas" --with-linalg-libs="-L/usr/lib64 -llapack -lf77blas -lcblas -latlas"
 
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
-# Test suite
-# tests are performed during building as they are not available in the installed package.
+# Test suite 
 make check 
 ./tests/runtests.py v1 -j${CPU_COUNT} -o1 -n1
 ./tests/runtests.py paral -n2 -o1
@@ -107,29 +50,6 @@ make check
 # Install binaries (don't copy test files to reduce size of the package)
 make install-exec
 
-#declare -a ABINIT_BINARIES=(
-#	"abinit" "band2eps" "cut3d" "ioprof" "mrgdv" "ujdet"
-#	"bsepostproc" "lapackprof" "mrggkk" "vdw_kernelgen"
-#	"aim" "fftprof" "macroave" "mrgscr" 
-#	"anaddb" "conducti" "fold2Bloch" "mrgddb" "optic"
-#)
-#
-#if [[ `uname` == 'Darwin' ]]; then
-#    for bname in "${ABINIT_BINARIES[@]}" 
-#    do
-#        otool -L ${PREFIX}/bin/${bname}
-#        install_name_tool \
-#          -change ${LIBGCC_S_PATH} ${CONDA_PREFIX}/lib/${LIBGCC_S_NAME} \
-#          -change ${LIBQUADMATH_PATH} ${CONDA_PREFIX}/lib/${LIBQUADMATH_NAME} \
-#          -change ${LIBGFORTRAN_PATH} ${CONDA_PREFIX}/lib/${LIBGFORTRAN_NAME} \
-#          ${PREFIX}/bin/${bname}
-#        otool -L ${PREFIX}/bin/${bname}
-#    done 
-#fi 
-
-
-#unset FC
-#unset CC
 unset CFLAGS
 unset FCFLAGS
 unset LDFLAGS
