@@ -5,6 +5,11 @@ package:
     name: atompaw
     version: {{ version }}
 
+build:
+    number: 0
+    string: libxc_{{ libxc_version }}
+
+
 source:
     fn: atompaw-{{ version }}.tar.gz
     url: http://users.wfu.edu/natalie/papers/pwpaw/atompaw-{{ version }}.tar.gz

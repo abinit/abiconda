@@ -29,7 +29,6 @@ install:
 
 script: ./build_linux.sh
 
-
 notifications:
   email:
     recipients:

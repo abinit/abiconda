@@ -6,18 +6,19 @@ package:
     name: abinit
     version: {{ version }}
 
-source:
-    fn: abinit-{{ version }}.tar.gz
-    url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
-    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
-
 build:
-    number: '0'
+    number: 0
+    string: mpi_{{ mpi }}_libxc_{{ libxc_version }}
     script: python setup.py install --single-version-externally-managed --record record.txt
     # See https://github.com/ContinuumIO/anaconda-issues/issues/739
     rpaths:
       - lib/
       - lib64/
+
+source:
+    fn: abinit-{{ version }}.tar.gz
+    url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
+    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
 
 requirements:
   build:

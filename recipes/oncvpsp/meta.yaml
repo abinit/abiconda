@@ -5,6 +5,10 @@ package:
     name: oncvpsp
     version: {{ version }}
 
+build:
+    number: 0
+    string: libxc_{{ libxc_version }}
+
 source:
     fn: oncvpsp-{{ version }}.tar.gz
     url: http://www.mat-simresearch.com/oncvpsp-{{ version }}.tar.gz
