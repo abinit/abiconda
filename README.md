@@ -2,14 +2,69 @@
 
 ## abiconda channel
 
-[abiconda channel](https://anaconda.org/abiconda) is a Conda channel providing Abinit-related packages. 
-The goal is to facilitate the installation of Abinit-related programs to end-users.
-This channel is somewhat complementary to the packages provided by 
+[abiconda channel](https://anaconda.org/abiconda) is a Conda channel with recipes for Abinit-related packages. 
+The goal is to facilitate the installation of Abinit-related applications to end-users.
+This channel is somewhat complementary to the packages provided by the
 [materials.sh](https://github.com/materialsvirtuallab/materials.sh) channel.
 
+For a quick howto with the five commands required to install Abinit on your machine (Linux or MacOSx)
+jump immediately to the [next section](#How to install Abinit in five steps).
+A more detailed discussion about the installation with ``conda``, 
+and the use of conda environments is given in [this section](#Getting started).
+
+Note that the ``abiconda`` executables are useful if you want to try Abinit on your machine 
+but they are not supposed to be used for high-performance calculations.
+
+For examples of configuration files to configure/compile Abinit on clusters, please visit the  
+the [abiconfig](https://github.com/abinit/abiconfig) repository.
+If you need a **real package manager** able to support multiple versions 
+and configurations of software, consider the following projects:
+
+  * [spack](https://github.com/LLNL/spack)
+  * [easybuild](https://github.com/hpcugent/easybuild)
+
+Both projects are designed for large supercomputing centers and 
+they already provide configuration files to build Abinit.
+
+## How to install Abinit in five steps
+
+If you are a Linux user, download and install ``miniconda`` on your local machine with:
+
+    $ wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    $ bash Miniconda2-latest-Linux-x86_64.sh
+
+while for MacOSx use:
+
+    $ wget https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
+    $ bash Miniconda2-latest-MacOSX-x86_64.sh
+
+Answer ``yes`` to the question:
+
+    Do you wish the installer to prepend the Miniconda2 install location
+    to PATH in your /home/gmatteo/.bashrc ? [yes|no]
+    [no] >>> yes
+
+Source your ``.bashrc`` file to activate the changes done by ``miniconda`` to your ``$PATH``:
+
+    $ source ~/.bashrc
+
+Add ``conda-forge`` to the conda channels:
+
+    $ conda config --add channels conda-forge
+
+Install the parallel version of abinit with:
+
+    $ conda install abinit -c gmatteo
+    $ abinit -v
+    
 ## Getting started
 
-Download ``conda`` for your operating system from [https://www.continuum.io/downloads](https://www.continuum.io/downloads).
+Download ``anaconda`` for your operating system from [https://www.continuum.io/downloads](https://www.continuum.io/downloads).
+``anaconda`` is a distribution with the most popular Python packages for data science and includes ``conda`` 
+the cross-platform, language-agnostic package-manager required to install Abinit.
+If you don't need the entire ``anaconda`` distribution, 
+start with [miniconda](http://conda.pydata.org/miniconda.html) which contains only ``conda`` and Python.
+
 By default, the installer adds the following line to your ``.bash_profile``:
 
     export PATH="/Users/gmatteo/anaconda2/bin:$PATH"
@@ -93,7 +148,7 @@ To install a particular version of Abinit use:
 
 ## Troubleshooting
 
-- All the conda applications should use libraries installed inside the anaconda directory. 
+- All the conda applications should use libraries installed inside the conda environment. 
   As a consequence, the use of the ``$LD_LIBRARY_PATH`` (linux) or 
   ``$DYLD_LIBRARY_PATH`` (MacOsx) environment variables is strongly discouraged 
   as it can lead to runtime errors and malfunctioning.
@@ -113,31 +168,32 @@ To install a particular version of Abinit use:
   when the ``conda`` developers decided to upgrade the ``gcc`` version or if other **tricky** dependencies 
   such as the MPI library are upgraded upstream.
   In this case, contact us and we will try to provide new pre-compiled versions compatible with the 
-  new software stack.
+  new anaconda software stack.
   Alternatively, you may try the sequential version ``abinit_seq`` in which the number of external dependencies 
   and therefore the probability of linkage problems is significantly reduced.
 
-  Note, however, that all the dependencies are provided by conda with the exception of the C standard library
+- All the dependencies are provided by conda with the exception of the C standard library
   (``libc`` on linux, ``libSystem.B.dylib`` on MacOsx).
-  If the C library provided by your OS is too old or too recent, you will get error messages such as:
+  If the C library provided by your OS is too old, you will get error messages such as:
 
       $ abinit
       abinit: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by abinit)
 
-  when you try to execute the application. ``ldd`` indeed shows that our system uses ``libc 2.12`` 
+  when you try to execute the application from the terminal. 
+  ``ldd`` indeed shows that our system uses ``libc 2.12`` 
 
       $ ldd --version
       ldd (GNU libc) 2.12
 
-  This means that the abiconda executable requires a C library that is not compatible with the one available on your system.
-  At the time of writing, we build executables and libraries with GNU libc 2.12.
+  This means that our abiconda executable requires a C library that is not compatible with 
+  the one available on your system (this usually happens when your library is too old).
+  At the time of writing, we build executables and libraries for linux with GNU libc 2.12
+  while MacOsx applications are built with MacOS 10.11.2. 
+  This should cover the most common cases but it your OS is too old you will have to compile from source.
 
-  If the C-library is recent, we can easily solve the problem by providing executables compiled with the new C-library.
-  If, on the other hand, the C library is too old, we have a serious problem because supporting all the possible versions
-  it's not an easy task (we should set up a machines with the same C-library as the one used on your system,
-  find a version of conda that works with this configuration and finally try to recompile the application and the 
-  corresponding libraries)
-  In this case you can either try an old version of the Abinit executables (start from the oldest one) 
-  or, if anything works, you will have to compile from source.
+  Note that supporting all the possible libc versions is not easy since
+  we should set up a machines with the same C-library as the one used on your system,
+  find a version of conda that works with this configuration and finally try to recompile 
+  the application and the corresponding libraries)
 
 For more info, please consult the [official conda documentation](https://conda.io/docs/troubleshooting.html)

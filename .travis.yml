@@ -15,12 +15,13 @@ matrix:
       language: generic
       env: PYTHON_VERSION=2.7
 
-sudo: required
+#sudo: required
 
 install:
   - source conda_installer.sh
   - conda upgrade conda
-  - conda install conda-build anaconda-client
+  - conda install conda-build 
+  #- conda install anaconda-client
   - conda upgrade conda-build
   - conda config --set anaconda_upload no
   - conda config --add channels conda-forge
