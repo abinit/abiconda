@@ -8,9 +8,9 @@ This channel is somewhat complementary to the packages provided by the
 [materials.sh](https://github.com/materialsvirtuallab/materials.sh) channel.
 
 For a quick howto with the five commands required to install Abinit on your machine (Linux or MacOSx)
-jump immediately to the [next section](#How to install Abinit in five steps).
+jump immediately to the [next section](#Abinit_in_five_steps).
 A more detailed discussion about the installation with ``conda``, 
-and the use of conda environments is given in [this section](#Getting started).
+and the use of conda environments is given in [this section](#Getting_started).
 
 Note that the ``abiconda`` executables are useful if you want to try Abinit on your machine 
 but they are not supposed to be used for high-performance calculations.
@@ -26,7 +26,7 @@ and configurations of software, consider the following projects:
 Both projects are designed for large supercomputing centers and 
 they already provide configuration files to build Abinit.
 
-## How to install Abinit in five steps
+## How to install Abinit in five steps <a name="Abinit_in_five_steps"></a>
 
 If you are a Linux user, download and install ``miniconda`` on your local machine with:
 
@@ -57,7 +57,7 @@ Install the parallel version of abinit with:
     $ conda install abinit -c gmatteo
     $ abinit -v
     
-## Getting started
+## Getting started <a name="Getting_started"></a>
 
 Download ``anaconda`` for your operating system from [https://www.continuum.io/downloads](https://www.continuum.io/downloads).
 ``anaconda`` is a distribution with the most popular Python packages for data science and includes ``conda`` 
