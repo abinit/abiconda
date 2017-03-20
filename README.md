@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.org/gmatteo/abiconda.svg?branch=master)](https://travis-ci.org/gmatteo/abiconda)
+[![Build Status](https://travis-ci.org/abinit/abiconda.svg?branch=master)](https://travis-ci.org/abinit/abiconda)
 
-## abiconda channel
+## abinit channel
 
-[abiconda channel](https://anaconda.org/abiconda) is a Conda channel with recipes for Abinit-related packages. 
+This repository contains conda recipes to build Abinit-related packages.
+The pre-compiled libraries and executables for Linux and MacOSx are available on the 
+[abinit channel](https://anaconda.org/abinit).
 The goal is to facilitate the installation of abinit to end-users who want to
 run the code on their personal computers without having to pass through the compilation process.
 This channel also provides conda packages for [AbiPy](https://github.com/abinit/abipy)
@@ -16,7 +18,7 @@ and the use of conda environments is given in [this section](#Getting_started).
 For further information on the conda package manager, please consult the 
 [official conda documentation](https://conda.io/docs/using/).
 
-Note that the ``abiconda`` executables are useful if you want to try Abinit on your machine 
+Note that these pre-compiled executables are useful if you want to try Abinit on your machine 
 but they are not supposed to be used for high-performance calculations.
 
 For examples of configuration files to configure/compile Abinit on clusters, please visit the  
@@ -56,9 +58,9 @@ Add ``conda-forge`` to the conda channels:
 
     $ conda config --add channels conda-forge
 
-Install the parallel version of abinit with:
+Install the parallel version of abinit from the ``abinit channel`` with:
 
-    $ conda install abinit -c gmatteo
+    $ conda install abinit --channel abinit
     $ abinit -v
     
 ## Getting started <a name="Getting_started"></a>
@@ -93,11 +95,11 @@ so we have to add ``conda-forge`` to the list of default channels with:
 
     $ conda config --add channels conda-forge
 
-Now we can install the ``abiconda`` applications e.g. ``abinit`` with:
+Now we can install abinit from the ``abinit channel`` with:
 
-    $ conda install abinit -c gmatteo
+    $ conda install abinit --channel abinit
 
-This command will download and install the last version of Abinit from the [gmatteo channel](https://anaconda.org/gmatteo).
+This command will download and install the last version of Abinit from the [abinit channel](https://anaconda.org/abinit).
 The Abinit executables are placed inside the anaconda directory associated to the ``abienv`` environment:
 
     $ which abinit
@@ -138,20 +140,39 @@ if this variable is not defined.
 
 Alternatively, one can install the **sequential** version (minimal dependencies, no parallelism) with: 
 
-    $ conda install abinit_seq -c gmatteo
+    $ conda install abinit_seq --channel abinit
 
-To get the list of Abinit versions available in the [gmatteo channel](https://anaconda.org/gmatteo):
+To get the list of Abinit versions available in the [abinit channel](https://anaconda.org/abinit):
 
-    $ conda search abinit -c gmatteo
+    $ conda search abinit --channel abinit
 
         Fetching package metadata ...........
-        abinit                       8.0.8                         0  gmatteo
-                                  *  8.2.2                         0  gmatteo
-        abinit_seq                *  8.2.2                         0  gmatteo
+        abinit                       8.0.8                         0  abinit
+                                  *  8.2.2                         0  abinit
+        abinit_seq                *  8.2.2                         0  abinit
 
 To install a particular version of Abinit use:
 
-    $ conda install abinit=8.2.0 -c gmatteo
+    $ conda install abinit=8.2.0 --channel abinit
+
+
+## Packages
+
+Abinit: 
+
+[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/version.svg)](https://anaconda.org/abinit/abinit)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/downloads.svg)](https://anaconda.org/abinit/abinit)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/installer/conda.svg)](https://conda.anaconda.org/abinit)
+
+Atompaw 
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/version.svg)](https://anaconda.org/abinit/atompaw)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/downloads.svg)](https://anaconda.org/abinit/atompaw)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
+
+Oncvpsp
+[![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/version.svg)](https://anaconda.org/abinit/oncvpsp)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/downloads.svg)](https://anaconda.org/abinit/oncvpsp)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
 
 ## Troubleshooting
 
@@ -171,9 +192,9 @@ To install a particular version of Abinit use:
 - If the parallel version of Abinit aborts with the following error:
 
 	Fatal error in MPI_Init: Other MPI error, error stack:
-	MPIR_Init_thread(474)..............:
-        MPID_Init(190).....................: channel initialization failed
-        MPIDI_CH3_Init(89).................:
+	MPIR_Init_thread(474)..............: 
+        MPID_Init(190).....................: channel initialization failed 
+        MPIDI_CH3_Init(89).................: 
         MPID_nem_init(320).................:
         MPID_nem_tcp_init(173).............:
         MPID_nem_tcp_get_business_card(420):
@@ -185,10 +206,9 @@ To install a particular version of Abinit use:
         127.0.0.1       localhost
         127.0.0.1       gmac2      # Add this line. Replace gmac2 with the name of your machine.
 
-- The majority of the libraries required by the ``abiconda`` applications (including ``libgcc``
-  and ``libgfortran``) are automatically installed in your conda environment when you issue 
-  ``conda install APPNAME -c gmatteo``.
-  In principle, these libraries should be compatible with the abiconda executables but incompatibilities may appear
+- Most of the dependencies including ``libgcc`` and ``libgfortran`` are automatically installed 
+  in your conda environment when you issue  ``conda install APPNAME -c abinit``.
+  In principle, these libraries should be compatible with the abinit executables but incompatibilities may appear
   when the ``conda`` developers decided to upgrade the ``gcc`` version or if other **tricky** dependencies 
   such as the MPI library are upgraded upstream.
   In this case, contact us and we will try to provide new pre-compiled versions compatible with the 
@@ -209,7 +229,7 @@ To install a particular version of Abinit use:
       $ ldd --version
       ldd (GNU libc) 2.12
 
-  This means that our abiconda executable requires a C library that is not compatible with 
+  This means that our executable requires a C library that is not compatible with 
   the one available on your system (this usually happens when your library is too old).
   At the time of writing, we build executables and libraries for linux with GNU libc 2.12
   while MacOsx applications are built with MacOS 10.11.2. 
