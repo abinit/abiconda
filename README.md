@@ -158,21 +158,29 @@ To install a particular version of Abinit use:
 
 ## Packages
 
-Abinit: 
+abinit: 
+
+Version with MPI support, libxc, fftw3, openblas and netcdf4 + hdf5
 
 [![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/version.svg)](https://anaconda.org/abinit/abinit)
 [![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/downloads.svg)](https://anaconda.org/abinit/abinit)
 [![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/installer/conda.svg)](https://conda.anaconda.org/abinit)
 
-Atompaw 
-[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/version.svg)](https://anaconda.org/abinit/atompaw)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/downloads.svg)](https://anaconda.org/abinit/atompaw)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
+oncvpsp:
 
-Oncvpsp
+Generator for norm-conserving pseudopotentials compiled with libxc support
+
 [![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/version.svg)](https://anaconda.org/abinit/oncvpsp)
 [![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/downloads.svg)](https://anaconda.org/abinit/oncvpsp)
 [![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
+
+atompaw:
+
+Generator for PAW datasets compiled with libxc support
+
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/version.svg)](https://anaconda.org/abinit/atompaw)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/downloads.svg)](https://anaconda.org/abinit/atompaw)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
 
 ## Troubleshooting
 
@@ -193,12 +201,12 @@ Oncvpsp
 
 	Fatal error in MPI_Init: Other MPI error, error stack:
 	MPIR_Init_thread(474)..............: 
-        MPID_Init(190).....................: channel initialization failed 
-        MPIDI_CH3_Init(89).................: 
-        MPID_nem_init(320).................:
-        MPID_nem_tcp_init(173).............:
-        MPID_nem_tcp_get_business_card(420):
-        MPID_nem_tcp_init(379).............: gethostbyname failed, gmac2 (errno 1)
+	MPID_Init(190).....................: channel initialization failed 
+	MPIDI_CH3_Init(89).................:
+	MPID_nem_init(320).................:
+	MPID_nem_tcp_init(173).............:
+	MPID_nem_tcp_get_business_card(420):
+	MPID_nem_tcp_init(379).............: gethostbyname failed, gmac2 (errno 1)
 
   open ``/etc/hosts`` with e.g. ``sudo vi /etc/hosts`` and add a new entry mapping 
   the ``127.0.0.1`` ip address to the name of your machine e.g.:
