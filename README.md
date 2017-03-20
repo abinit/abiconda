@@ -3,14 +3,18 @@
 ## abiconda channel
 
 [abiconda channel](https://anaconda.org/abiconda) is a Conda channel with recipes for Abinit-related packages. 
-The goal is to facilitate the installation of Abinit-related applications to end-users.
-This channel is somewhat complementary to the packages provided by the
-[materials.sh](https://github.com/materialsvirtuallab/materials.sh) channel.
+The goal is to facilitate the installation of abinit to end-users who want to
+run the code on their personal computers without having to pass through the compilation process.
+This channel also provides conda packages for [AbiPy](https://github.com/abinit/abipy)
+and can be used in conjunction with the [materials.sh](https://github.com/materialsvirtuallab/materials.sh) channel
+to install a powerful Python+Fortran ecosystem for materials science research.
 
-For a quick howto with the five commands required to install Abinit on your machine (Linux or MacOSx)
+For a quick howto with the five commands required to install Abinit on your machine (Linux or MacOSx),
 jump immediately to the [next section](#Abinit_in_five_steps).
 A more detailed discussion about the installation with ``conda``, 
 and the use of conda environments is given in [this section](#Getting_started).
+For further information on the conda package manager, please consult the 
+[official conda documentation](https://conda.io/docs/using/).
 
 Note that the ``abiconda`` executables are useful if you want to try Abinit on your machine 
 but they are not supposed to be used for high-performance calculations.
@@ -79,7 +83,10 @@ and activate it with:
 
     $ source activate abienv
 
-For further information on conda, please consult the [official conda documentation](https://conda.io/docs/using/).
+It's always a good idea to install Abinit and its dependencies in a separate environment 
+because installing one program at a time can lead to dependency conflicts.
+For more information about conda environment, consult the 
+[official documentation](https://conda.io/docs/using/envs.html#).
 
 The most important (pre-compiled) libraries will be obtained by [conda-forge](https://conda-forge.github.io)
 so we have to add ``conda-forge`` to the list of default channels with:
@@ -160,6 +167,23 @@ To install a particular version of Abinit use:
 
       $ which mpirun
       ~/anaconda2/envs/abienv/bin/mpirun
+
+- If the parallel version of Abinit aborts with the following error:
+
+	Fatal error in MPI_Init: Other MPI error, error stack:
+	MPIR_Init_thread(474)..............:
+        MPID_Init(190).....................: channel initialization failed
+        MPIDI_CH3_Init(89).................:
+        MPID_nem_init(320).................:
+        MPID_nem_tcp_init(173).............:
+        MPID_nem_tcp_get_business_card(420):
+        MPID_nem_tcp_init(379).............: gethostbyname failed, gmac2 (errno 1)
+
+  open ``/etc/hosts`` with e.g. ``sudo vi /etc/hosts`` and add a new entry mapping 
+  the ``127.0.0.1`` ip address to the name of your machine e.g.:
+
+        127.0.0.1       localhost
+        127.0.0.1       gmac2      # Add this line. Replace gmac2 with the name of your machine.
 
 - The majority of the libraries required by the ``abiconda`` applications (including ``libgcc``
   and ``libgfortran``) are automatically installed in your conda environment when you issue 
