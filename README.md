@@ -9,7 +9,7 @@ The goal is to facilitate the installation of abinit to end-users who want to
 run the code on their personal computers without having to pass through the compilation process.
 This channel also provides conda packages for [AbiPy](https://github.com/abinit/abipy)
 and can be used in conjunction with the [materials.sh](https://github.com/materialsvirtuallab/materials.sh) channel
-to install a powerful Python+Fortran ecosystem for materials science research.
+to install a powerful Python + Fortran ecosystem for materials science research.
 
 For a quick howto with the five commands required to install Abinit on your machine (Linux or MacOSx),
 jump immediately to the [next section](#Abinit_in_five_steps).
@@ -21,7 +21,7 @@ For further information on the conda package manager, please consult the
 Note that these pre-compiled executables are useful if you want to try Abinit on your machine 
 but they are not supposed to be used for high-performance calculations.
 
-For examples of configuration files to configure/compile Abinit on clusters, please visit the  
+For examples of configuration files to configure/compile Abinit on clusters, please visit
 the [abiconfig](https://github.com/abinit/abiconfig) repository.
 If you need a **real package manager** able to support multiple versions 
 and configurations of software, consider the following projects:
@@ -62,6 +62,8 @@ Install the parallel version of abinit from the ``abinit channel`` with:
 
     $ conda install abinit --channel abinit
     $ abinit -v
+
+The [troubleshooting](#Troubleshooting) section discusses how to solve typical problems.
     
 ## Getting started <a name="Getting_started"></a>
 
@@ -99,7 +101,7 @@ Now we can install abinit from the ``abinit channel`` with:
 
     $ conda install abinit --channel abinit
 
-This command will download and install the last version of Abinit from the [abinit channel](https://anaconda.org/abinit).
+This command downloads and installs the last version of Abinit from the [abinit channel](https://anaconda.org/abinit).
 The Abinit executables are placed inside the anaconda directory associated to the ``abienv`` environment:
 
     $ which abinit
@@ -131,7 +133,8 @@ to get the list of dynamic libraries linked to the application whereas macOSx ca
 The output of ``otool`` indicates that this executable is linked against ``openblas``, 
 ``MPI`` (mpich), ``FFTW`` and ``netcdf4+hdf5``.
 The BLAS library is threaded and the number of threads used at runtime is defined by the
-environment variable ``OMP_NUM_THREADS``. We suggest to add:
+environment variable ``OMP_NUM_THREADS``. 
+We strongly suggest to add:
 
     export OMP_NUM_THREADS=1
 
@@ -163,26 +166,26 @@ abinit:
 Version with MPI support, libxc, fftw3, openblas and netcdf4 + hdf5
 
 [![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/version.svg)](https://anaconda.org/abinit/abinit)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/downloads.svg)](https://anaconda.org/abinit/abinit)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/installer/conda.svg)](https://conda.anaconda.org/abinit)
+
+abinit\_seq: 
+
+Sequential version with internal fallbacks for libxc and netcdf3 (statically linked).
+
+[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit_seq/badges/version.svg)](https://anaconda.org/abinit/abinit_seq)
 
 oncvpsp:
 
-Generator for norm-conserving pseudopotentials compiled with libxc support
+Generator for norm-conserving pseudopotentials compiled with ``libxc`` support
 
 [![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/version.svg)](https://anaconda.org/abinit/oncvpsp)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/downloads.svg)](https://anaconda.org/abinit/oncvpsp)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/oncvpsp/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
 
 atompaw:
 
-Generator for PAW datasets compiled with libxc support
+Generator for PAW datasets compiled with ``libxc`` support
 
 [![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/version.svg)](https://anaconda.org/abinit/atompaw)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/downloads.svg)](https://anaconda.org/abinit/atompaw)
-[![Anaconda-Server Badge](https://anaconda.org/abinit/atompaw/badges/installer/conda.svg)](https://conda.anaconda.org/abin)
 
-## Troubleshooting
+## Troubleshooting <a name="Troubleshooting"></a>
 
 - All the conda applications should use libraries installed inside the conda environment. 
   As a consequence, the use of the ``$LD_LIBRARY_PATH`` (linux) or 
@@ -243,7 +246,7 @@ Generator for PAW datasets compiled with libxc support
   while MacOsx applications are built with MacOS 10.11.2. 
   This should cover the most common cases but it your OS is too old you will have to compile from source.
 
-  Note that supporting all the possible libc versions is not easy since
+  Note that supporting all the possible ``libc`` versions is not easy since
   we should set up a machines with the same C-library as the one used on your system,
   find a version of conda that works with this configuration and finally try to recompile 
   the application and the corresponding libraries)
