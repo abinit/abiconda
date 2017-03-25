@@ -18,7 +18,7 @@ matrix:
 #sudo: required
 
 install:
-  - source conda_installer.sh
+  - source ./scripts/conda_installer.sh
   - conda upgrade conda
   - conda install conda-build 
   #- conda install anaconda-client
@@ -27,7 +27,7 @@ install:
   - conda config --add channels conda-forge
   - conda install gcc
 
-script: ./build_linux.sh
+script: ./scripts/build_linux.sh
 
 notifications:
   email:

@@ -1,6 +1,6 @@
 set -e
 
-./getinfo.sh
+#./getinfo.sh
 
 conda build recipes/fftw
 conda build recipes/libxc
