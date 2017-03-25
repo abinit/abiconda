@@ -1,6 +1,7 @@
 branches:
   only:
-    - master
+    #- master
+    - foobar
 
 language: python
 

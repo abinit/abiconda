@@ -1,0 +1,43 @@
+{% set name = "html2text" %}
+{% set version = "2016.9.19" %}
+{% set md5 = "d6b07e32ed21f186496f012691e02dd5" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  md5: {{ md5 }}
+
+build:
+  number: 0
+  preserve_egg_dir: True
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - setuptools
+
+test:
+  imports:
+    - html2text
+  commands:
+    - html2text --help
+
+about:
+  home: https://github.com/Alir3z4/html2text/
+  license: GNU General Public License (GPL)
+  summary: 'Turn HTML into equivalent Markdown-structured text.'
+  license_family: LGPL
+
+extra:
+  recipe-maintainers:
+    - gmatteo
