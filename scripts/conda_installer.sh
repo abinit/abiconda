@@ -22,7 +22,10 @@ export PATH="${HOME}/miniconda/bin:${PATH}"
 hash -r
 
 conda config --set always_yes yes --set changeps1 no
-conda update -q conda
+conda update conda
+conda install conda-build
+conda update -n root conda-build
+conda install anaconda-client
 # Useful for debugging any issues with conda
 conda info -a
 # Replace dep1 dep2 ... with your dependencies
