@@ -1,21 +1,23 @@
 {% set name = "abipy" %}
-{% set version = "0.2.0" %}
-{% set md5 = "af9bc5cf7d5ca1a56ff73e2a65c5bcbd" %}
-
+{% set version = "0.3.0" %}
+#{% set md5 = "af9bc5cf7d5ca1a56ff73e2a65c5bcbd" %}
+#55fd776786979ac5362ce37aa4a3c993
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  md5: {{ md5 }}
+  #fn: {{ name }}-{{ version }}.tar.gz
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  #md5: {{ md5 }}
+  git_tag: {{ version }}
+  git_url: https://github.com/abinit/abipy.git
+
 
 build:
   number: 0
   #script: python setup.py install --single-version-externally-managed --record record.txt
-
 
 requirements:
   build:
@@ -30,16 +32,16 @@ requirements:
     - html2text
     - pyyaml >=3.11
     - pandas
-    - numpy >=1.9
-    - scipy >=0.14
+    - numpy
+    - scipy
     - spglib
-    - pymatgen >=4.7.2
+    - pymatgen ==2018.2.13
     - netcdf4
-    - matplotlib >=1.5
+    - matplotlib
     - seaborn
-
   run:
     - python
+    - setuptools
     - six
     - prettytable
     - tabulate
@@ -49,12 +51,12 @@ requirements:
     - html2text
     - pyyaml >=3.11
     - pandas
-    - numpy >=1.9
-    - scipy >=0.14
+    - numpy
+    - scipy
     - spglib
-    - pymatgen >=4.7.2
+    - pymatgen ==2018.2.13
     - netcdf4
-    - matplotlib >=1.5
+    - matplotlib
     - seaborn
 
 test:
@@ -90,7 +92,7 @@ about:
     automate ab-initio calculations and typical convergence studies. 
     AbiPy is interfaced with Pymatgen and this allows users to benefit from the different tools 
     and python objects available in the pymatgen ecosystem
-  doc_url: http://abinit.github.io/abipy
+  doc_url: https://abinit.github.io/abipy
   dev_url: https://github.com/abinit/abipy
 
 extra:
