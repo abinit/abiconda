@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/abinit/abiconda.svg?branch=master)](https://travis-ci.org/abinit/abiconda)
+[![Anaconda-Server Badge](https://anaconda.org/abinit/abinit/badges/version.svg)](https://anaconda.org/abinit/abinit)
 
 ## abinit channel
 
@@ -36,13 +37,13 @@ they already provide configuration files to build Abinit.
 
 If you are a Linux user, download and install ``miniconda`` on your local machine with:
 
-    $ wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-    $ bash Miniconda2-latest-Linux-x86_64.sh
+    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    bash Miniconda2-latest-Linux-x86_64.sh
 
 while for MacOSx use:
 
-    $ wget https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
-    $ bash Miniconda2-latest-MacOSX-x86_64.sh
+    curl -o https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
+    bash Miniconda2-latest-MacOSX-x86_64.sh
 
 Answer ``yes`` to the question:
 
@@ -52,16 +53,16 @@ Answer ``yes`` to the question:
 
 Source your ``.bashrc`` file to activate the changes done by ``miniconda`` to your ``$PATH``:
 
-    $ source ~/.bashrc
+    source ~/.bashrc
 
 Add ``conda-forge`` to the conda channels:
 
-    $ conda config --add channels conda-forge
+    conda config --add channels conda-forge
 
 Install the parallel version of abinit from the ``abinit channel`` with:
 
-    $ conda install abinit --channel abinit
-    $ abinit -v
+    conda install abinit --channel abinit
+    abinit -v
 
 The [troubleshooting](#Troubleshooting) section discusses how to solve typical problems.
     
@@ -81,11 +82,11 @@ so we have to ``source ~/.bash_profile`` before continuing in order to have the 
 
 Create a new conda environment (let's call it ``abienv``) with:
 
-    $ conda create -n abienv
+    conda create -n abienv
 
 and activate it with:
 
-    $ source activate abienv
+    source activate abienv
 
 It's always a good idea to install Abinit and its dependencies in a separate environment 
 because installing one program at a time can lead to dependency conflicts.
@@ -95,25 +96,26 @@ For more information about conda environment, consult the
 The most important (pre-compiled) libraries will be obtained by [conda-forge](https://conda-forge.github.io)
 so we have to add ``conda-forge`` to the list of default channels with:
 
-    $ conda config --add channels conda-forge
+    conda config --add channels conda-forge
 
 Now we can install abinit from the ``abinit channel`` with:
 
-    $ conda install abinit --channel abinit
+    conda install abinit --channel abinit
 
 This command downloads and installs the last version of Abinit from the [abinit channel](https://anaconda.org/abinit).
 The Abinit executables are placed inside the anaconda directory associated to the ``abienv`` environment:
 
-    $ which abinit
+    which abinit
     /Users/gmatteo/anaconda2/envs/abienv/bin/abinit
 
 Linux users can use the shell command:
 
-    $ ldd `which abinit`
+    ldd `which abinit`
 
 to get the list of dynamic libraries linked to the application whereas macOSx can use:
 
-    $ otool -L `which abinit`
+    otool -L `which abinit`
+
     /Users/gmatteo/anaconda2/envs/abinit/bin/abinit:
             /usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)
             @rpath/libnetcdff.6.dylib (compatibility version 6.0.0, current version 6.1.1)
@@ -143,11 +145,11 @@ if this variable is not defined.
 
 Alternatively, one can install the **sequential** version (minimal dependencies, no parallelism) with: 
 
-    $ conda install abinit_seq --channel abinit
+    conda install abinit_seq --channel abinit
 
 To get the list of Abinit versions available in the [abinit channel](https://anaconda.org/abinit):
 
-    $ conda search abinit --channel abinit
+    conda search abinit --channel abinit
 
         Fetching package metadata ...........
         abinit                       8.0.8                         0  abinit
@@ -202,14 +204,14 @@ Generator for PAW datasets compiled with ``libxc`` support
 
 - If the parallel version of Abinit aborts with the following error:
 
-	Fatal error in MPI_Init: Other MPI error, error stack:
-	MPIR_Init_thread(474)..............: 
-	MPID_Init(190).....................: channel initialization failed 
-	MPIDI_CH3_Init(89).................:
-	MPID_nem_init(320).................:
-	MPID_nem_tcp_init(173).............:
-	MPID_nem_tcp_get_business_card(420):
-	MPID_nem_tcp_init(379).............: gethostbyname failed, gmac2 (errno 1)
+    Fatal error in MPI_Init: Other MPI error, error stack:
+    MPIR_Init_thread(474)..............: 
+    MPID_Init(190).....................: channel initialization failed 
+    MPIDI_CH3_Init(89).................:
+    MPID_nem_init(320).................:
+    MPID_nem_tcp_init(173).............:
+    MPID_nem_tcp_get_business_card(420):
+    MPID_nem_tcp_init(379).............: gethostbyname failed, gmac2 (errno 1)
 
   open ``/etc/hosts`` with e.g. ``sudo vi /etc/hosts`` and add a new entry mapping 
   the ``127.0.0.1`` ip address to the name of your machine e.g.:
@@ -231,13 +233,13 @@ Generator for PAW datasets compiled with ``libxc`` support
   (``libc`` on linux, ``libSystem.B.dylib`` on MacOsx).
   If the C library provided by your OS is too old, you will get error messages such as:
 
-      $ abinit
+      abinit
       abinit: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by abinit)
 
   when you try to execute the application from the terminal. 
   ``ldd`` indeed shows that our system uses ``libc 2.12`` 
 
-      $ ldd --version
+      ldd --version
       ldd (GNU libc) 2.12
 
   This means that our executable requires a C library that is not compatible with 
