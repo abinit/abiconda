@@ -1,4 +1,4 @@
-{% set version = "8.2.2" %}
+{% set version = "8.6.1" %}
 {% set libxc_version = '2.2.2' %}
 {% set mpi = 'mpich' %}
 
@@ -17,7 +17,7 @@ build:
 source:
     fn: abinit-{{ version }}.tar.gz
     url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
-    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
+    sha256: 52e6dc1edf4bbab8bfb9cb173b85b88f3b8e18020289b0daba61af94f3725fe7
 
 requirements:
   build:
@@ -37,6 +37,7 @@ requirements:
     - libgfortran 
     - openblas
     - fftw
+    - hdf5
     - netcdf4
     - netcdf-fortran
     - libxc {{ libxc_version }}
