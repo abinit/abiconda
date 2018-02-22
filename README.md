@@ -37,17 +37,17 @@ they already provide configuration files to build Abinit.
 
 If you are a Linux user, download and install ``miniconda`` on your local machine with:
 
-    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-    bash Miniconda2-latest-Linux-x86_64.sh
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh
 
 while for MacOSx use:
 
-    curl -o https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh
-    bash Miniconda2-latest-MacOSX-x86_64.sh
+    curl -o https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    bash Miniconda3-latest-MacOSX-x86_64.sh
 
 Answer ``yes`` to the question:
 
-    Do you wish the installer to prepend the Miniconda2 install location
+    Do you wish the installer to prepend the Miniconda3 install location
     to PATH in your /home/gmatteo/.bashrc ? [yes|no]
     [no] >>> yes
 
@@ -76,7 +76,7 @@ start with [miniconda](http://conda.pydata.org/miniconda.html) which contains on
 
 By default, the installer adds the following line to your ``.bash_profile``:
 
-    export PATH="/Users/gmatteo/anaconda2/bin:$PATH"
+    export PATH="/Users/gmatteo/anaconda3/bin:$PATH"
 
 so we have to ``source ~/.bash_profile`` before continuing in order to have the ``conda`` executable in our ``$PATH``. 
 
@@ -106,7 +106,7 @@ This command downloads and installs the last version of Abinit from the [abinit 
 The Abinit executables are placed inside the anaconda directory associated to the ``abienv`` environment:
 
     which abinit
-    /Users/gmatteo/anaconda2/envs/abienv/bin/abinit
+    /Users/gmatteo/anaconda3/envs/abienv/bin/abinit
 
 Linux users can use the shell command:
 
@@ -116,7 +116,7 @@ to get the list of dynamic libraries linked to the application whereas macOSx ca
 
     otool -L `which abinit`
 
-    /Users/gmatteo/anaconda2/envs/abinit/bin/abinit:
+    /Users/gmatteo/anaconda3/envs/abinit/bin/abinit:
             /usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 307.4.0)
             @rpath/libnetcdff.6.dylib (compatibility version 6.0.0, current version 6.1.1)
             @rpath/libnetcdf.11.dylib (compatibility version 11.0.0, current version 11.4.0)
@@ -200,7 +200,7 @@ Generator for PAW datasets compiled with ``libxc`` support
   make sure that the bin directory of anaconda comes before the other directories and use:
 
       $ which mpirun
-      ~/anaconda2/envs/abienv/bin/mpirun
+      ~/anaconda3/envs/abienv/bin/mpirun
 
 - If the parallel version of Abinit aborts with the following error:
 
