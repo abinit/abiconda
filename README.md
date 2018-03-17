@@ -204,6 +204,7 @@ Generator for PAW datasets compiled with ``libxc`` support
 
 - If the parallel version of Abinit aborts with the following error:
 
+```sh
     Fatal error in MPI_Init: Other MPI error, error stack:
     MPIR_Init_thread(474)..............: 
     MPID_Init(190).....................: channel initialization failed 
@@ -218,6 +219,7 @@ Generator for PAW datasets compiled with ``libxc`` support
 
         127.0.0.1       localhost
         127.0.0.1       gmac2      # Add this line. Replace gmac2 with the name of your machine.
+```
 
 - Most of the dependencies including ``libgcc`` and ``libgfortran`` are automatically installed 
   in your conda environment when you issue  ``conda install APPNAME -c abinit``.
