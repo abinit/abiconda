@@ -30,6 +30,8 @@ NC_LIBS="-L${PREFIX}/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5"
 XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
 
+./config/scripts/makemake
+
 ./configure --prefix=${PREFIX} \
     --enable-mpi="yes" --enable-mpi-io="yes" --with-mpi-prefix=${PREFIX} \
     --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \

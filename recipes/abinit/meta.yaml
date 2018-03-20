@@ -1,4 +1,5 @@
-{% set version = "8.6.1" %}
+{% set name = "abinit" %}
+{% set version = "8.7.6" %}
 {% set libxc_version = '2.2.2' %}
 {% set mpi = 'mpich' %}
 
@@ -8,16 +9,18 @@ package:
 
 build:
     number: 0
-    script: python setup.py install --single-version-externally-managed --record record.txt
+    #script: python setup.py install --single-version-externally-managed --record record.txt
     # See https://github.com/ContinuumIO/anaconda-issues/issues/739
     rpaths:
       - lib/
       - lib64/
 
 source:
-    fn: abinit-{{ version }}.tar.gz
-    url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
-    sha256: 52e6dc1edf4bbab8bfb9cb173b85b88f3b8e18020289b0daba61af94f3725fe7
+    #fn: abinit-{{ version }}.tar.gz
+    #url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
+    #sha256: 52e6dc1edf4bbab8bfb9cb173b85b88f3b8e18020289b0daba61af94f3725fe7
+    git_tag: {{ version }}
+    git_url: https://github.com/abinit/abinit.git
 
 requirements:
   build:
