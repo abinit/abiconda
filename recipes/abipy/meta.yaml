@@ -1,5 +1,5 @@
 {% set name = "abipy" %}
-{% set version = "0.4.1" %}
+{% set version = "0.5.0" %}
 #{% set md5 = "af9bc5cf7d5ca1a56ff73e2a65c5bcbd" %}
 #55fd776786979ac5362ce37aa4a3c993
 
@@ -35,7 +35,7 @@ requirements:
     - numpy
     - scipy
     - spglib
-    - pymatgen ==2018.3.14
+    - pymatgen ==2018.6.11
     - netcdf4
     - matplotlib
     - seaborn
@@ -54,7 +54,7 @@ requirements:
     - numpy
     - scipy
     - spglib
-    - pymatgen ==2018.3.14
+    - pymatgen ==2018.6.11
     - netcdf4
     - matplotlib
     - seaborn
