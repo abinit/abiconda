@@ -22,14 +22,18 @@ build:
 requirements:
   build:
     - python {{ python }}
+    - six
+    - prettytable
     - abipy == 0.5.0
     - fireworks
-    - pymong
+    - pymongo
     - mongoengine
   run:
     - python {{ python }}
+    - six
+    - prettytable
     - fireworks
-    - pymong
+    - pymongo
     - mongoengine
 
 test:
@@ -48,7 +52,7 @@ test:
 about:
   license: GNU General Public License v2 (GPLv2)
   license_family: GPL2
-  home: https://github.com/abinit/abipy
+  home: https://github.com/abinit/abiflows
   summary: 'Python package to automate ABINIT calculations and analyze the results.'
   description: |
     High-throughput calculations with Abinit
