@@ -1,5 +1,5 @@
 {% set name = "abinit" %}
-{% set version = "8.8.2" %}
+{% set version = "8.10.1" %}
 {% set libxc_version = '2.2.2' %}
 {% set mpi = 'mpich' %}
 
