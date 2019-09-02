@@ -14,6 +14,9 @@ export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib"
 # -fPIC or -fpic
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 
+cd "$(dirname "$0")"
+./config/scripts/makemake
+
 # Version with internal fallbacks (static linkage)
 ./configure --prefix=${PREFIX} --enable-mpi=no \
     --with-linalg-flavor="none" \

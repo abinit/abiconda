@@ -30,6 +30,7 @@ NC_LIBS="-L${PREFIX}/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5"
 XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
 
+cd "$(dirname "$0")"
 ./config/scripts/makemake
 
 ./configure --prefix=${PREFIX} \
@@ -38,9 +39,10 @@ XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
     --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
     --with-trio-flavor=netcdf \
     --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
-    --with-dft-flavor="libxc+wannier90-fallback" \
-    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}" \
+    --with-dft-flavor="wannier90-fallback" \
     --enable-gw-dpc="yes"
+    # --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}" \
+    # --with-dft-flavor="wannier90-fallback" \
 
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
