@@ -1,21 +1,24 @@
-{% set version = "8.2.2" %}
+{% set name = "abinit" %}
+{% set version = "8.10.1" %}
 
 package:
     name: abinit_seq
     version: {{ version }}
 
 build:
-    number: 0
-    script: python setup.py install --single-version-externally-managed --record record.txt
+    number: 1
+    #script: python setup.py install --single-version-externally-managed --record record.txt
     # See https://github.com/ContinuumIO/anaconda-issues/issues/739
     rpaths:
       - lib/
       - lib64/
 
 source:
-    fn: abinit-{{ version }}.tar.gz
-    url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
-    sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
+    #fn: abinit-{{ version }}.tar.gz
+    #url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
+    #sha256: e43544a178d758b0deff3011c51ef7c957d7f2df2ce8543366d68016af9f3ea1
+    git_tag: {{ version }}
+    git_url: https://github.com/abinit/abinit.git
 
 
 requirements:
@@ -26,7 +29,6 @@ requirements:
     - gcc 
     - libgcc 
     - libgfortran
-
   run:
     - libgcc 
     - libgfortran 
