@@ -24,6 +24,9 @@ source:
 
 requirements:
   build:
+    - m4
+    - autoconf
+    - automake
     - gcc 
     - libgcc 
     - libgfortran
