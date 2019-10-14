@@ -9,8 +9,6 @@ package:
 
 build:
     number: 0
-    #script: python setup.py install --single-version-externally-managed --record record.txt
-    # See https://github.com/ContinuumIO/anaconda-issues/issues/739
     rpaths:
       - lib/
       - lib64/
@@ -27,8 +25,8 @@ requirements:
     - m4
     - autoconf
     - automake
-    - gcc 
-    - libgcc 
+    - gcc
+    - libgcc
     - libgfortran
     - openblas
     - fftw
@@ -39,8 +37,8 @@ requirements:
     - {{ mpi }}
 
   run:
-    - libgcc 
-    - libgfortran 
+    - libgcc
+    - libgfortran
     - openblas
     - fftw
     - hdf5
@@ -60,20 +58,20 @@ test:
 about:
     home: https://www.abinit.org/
     license: GPL
-    summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method." 
+    summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method."
 
     # The remaining entries in this section are optional, but recommended
     description: |
         ABINIT is a package whose main program allows one to find the total
-        energy, charge density and electronic structure of systems made of 
-        electrons and nuclei (molecules and periodic solids) within 
+        energy, charge density and electronic structure of systems made of
+        electrons and nuclei (molecules and periodic solids) within
         Density Functional Theory (DFT), using pseudopotentials and a planewave
-        or wavelet basis. ABINIT also includes options to optimize the geometry 
-        according to the DFT forces and stresses, or to perform molecular dynamics 
+        or wavelet basis. ABINIT also includes options to optimize the geometry
+        according to the DFT forces and stresses, or to perform molecular dynamics
         simulations using these forces, or to generate dynamical matrices,
         Born effective charges, and dielectric tensors, based on Density-Functional
-        Perturbation Theory, and many more properties. Excited states can be computed 
-        within the Many-Body Perturbation Theory (the GW approximation and the 
+        Perturbation Theory, and many more properties. Excited states can be computed
+        within the Many-Body Perturbation Theory (the GW approximation and the
         Bethe-Salpeter equation), and Time-Dependent Density Functional Theory
         (for molecules). In addition to the main ABINIT code, different  utility programs are provided.
     doc_url: http://www.abinit.org/doc/helpfiles/for-v8.0/users/new_user_guide.html

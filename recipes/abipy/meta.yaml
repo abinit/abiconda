@@ -14,7 +14,6 @@ source:
   git_tag: {{ version }}
   git_url: https://github.com/abinit/abipy.git
 
-
 build:
   number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
@@ -23,39 +22,37 @@ requirements:
   build:
     - python {{ python }}
     - setuptools
-    - six
-    - prettytable
+    - monty
     - tabulate
-    - apscheduler ==2.1.0
-    - pydispatcher >=2.0.5
+    - apscheduler==2.1.0
+    - pydispatcher>=2.0.5
     - tqdm
-    - html2text
-    - pyyaml >=3.11
+    - pyyaml>=3.11
     - pandas
     - numpy
     - scipy
+    - sympy
     - spglib
-    - pymatgen >=2018.8.7
-    - netcdf4
+    - pymatgen>=2018.8.7
+    - netCDF4
     - matplotlib
     - seaborn
   run:
     - python
     - setuptools
-    - six
-    - prettytable
+    - monty
     - tabulate
-    - apscheduler ==2.1.0
-    - pydispatcher >=2.0.5
+    - apscheduler==2.1.0
+    - pydispatcher>=2.0.5
     - tqdm
-    - html2text
-    - pyyaml >=3.11
+    - pyyaml>=3.11
     - pandas
     - numpy
     - scipy
+    - sympy
     - spglib
-    - pymatgen >=2018.8.7
-    - netcdf4
+    - pymatgen>=2018.8.7
+    - netCDF4
     - matplotlib
     - seaborn
 
@@ -75,7 +72,6 @@ test:
     - abipy.waves
 
   # You can also put a file called run_test.py in the recipe that will be run at test time.
-
   # requires:
     # Put any additional test requirements here.  For example
     # - nose
