@@ -22,29 +22,32 @@ source:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    #- {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
     - m4
     - autoconf
     - automake
-    - gcc
-    - libgcc
-    - libgfortran
+    #- gcc
+    #- libgcc
+    #- libgfortran
     - openblas
     - fftw
     - hdf5
     - netcdf4
     - netcdf-fortran
-    #- libxc {{ libxc_version }}
+    - libxc {{ libxc_version }}
     - {{ mpi }}
 
   run:
-    - libgcc
-    - libgfortran
+    #- libgcc
+    #- libgfortran
     - openblas
     - fftw
     - hdf5
     - netcdf4
     - netcdf-fortran
-    #- libxc {{ libxc_version }}
+    - libxc {{ libxc_version }}
     - {{ mpi }}
 
 test:

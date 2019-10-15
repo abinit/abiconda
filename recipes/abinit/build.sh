@@ -30,19 +30,22 @@ NC_LIBS="-L${PREFIX}/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5"
 XC_INCS="-I${PREFIX}/include"
 XC_LIBS="-L${PREFIX}/lib -lxcf90 -lxc"
 
+CC=mpicc
+FC=mpif90
+
 cd "$(dirname "$0")"
 ./config/scripts/makemake
 
 ./configure --prefix=${PREFIX} \
-    --enable-mpi="yes" --enable-mpi-io="yes" --with-mpi-prefix=${PREFIX} \
+    --enable-mpi="yes" --enable-mpi-io="yes" \
     --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
     --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
     --with-trio-flavor=netcdf \
     --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
     --with-dft-flavor="wannier90-fallback" \
-    --enable-gw-dpc="yes"
-    # --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}" \
-    # --with-dft-flavor="wannier90-fallback" \
+    --enable-gw-dpc="yes" \
+    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}"
+    # --with-mpi-prefix=${PREFIX} \
 
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
@@ -58,3 +61,5 @@ unset CFLAGS
 unset FCFLAGS
 unset LDFLAGS
 unset FC_LDFLAGS_EXTRA
+unset FC
+unset CC
