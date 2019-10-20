@@ -4,33 +4,28 @@
 {% set mpi = 'mpich' %}
 
 package:
-    name: abinit
+    name: {{ name }}
     version: {{ version }}
 
 build:
-    number: 0
+    number: 2
     rpaths:
       - lib/
       - lib64/
 
 source:
-    #fn: abinit-{{ version }}.tar.gz
-    #url: http://ftp.abinit.org/abinit-{{ version }}.tar.gz
-    #sha256: 52e6dc1edf4bbab8bfb9cb173b85b88f3b8e18020289b0daba61af94f3725fe7
     git_tag: {{ version }}
     git_url: https://github.com/abinit/abinit.git
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    #- {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}
     - m4
     - autoconf
     - automake
-    #- gcc
-    #- libgcc
-    #- libgfortran
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+
+  host:
     - openblas
     - fftw
     - hdf5
@@ -40,8 +35,6 @@ requirements:
     - {{ mpi }}
 
   run:
-    #- libgcc
-    #- libgfortran
     - openblas
     - fftw
     - hdf5
@@ -57,13 +50,15 @@ test:
     - test -x ${PREFIX}/bin/mrgddb
     - test -x ${PREFIX}/bin/mrgdv
     - test -x ${PREFIX}/bin/cut3d
+  # When I build this recipe, after you run my test suite here, also download and run some_downstream_pkg which depends on my package."
+  downstreams:
+    - abipy
+
 
 about:
     home: https://www.abinit.org/
     license: GPL
     summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method."
-
-    # The remaining entries in this section are optional, but recommended
     description: |
         ABINIT is a package whose main program allows one to find the total
         energy, charge density and electronic structure of systems made of
