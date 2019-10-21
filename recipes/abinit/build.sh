@@ -15,9 +15,10 @@ export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib"
 # see https://gcc.gnu.org/onlinedocs/gcc-4.8.3/gcc/Code-Gen-Options.html#Code-Gen-Options
 
 # FFTW3
-FFT_FLAVOR="fftw3"
-FFT_INCS="-I${PREFIX}/include"
-FFT_LIBS="-L${PREFIX}/lib -lfftw3f -lfftw3"
+#FFT_FLAVOR="fftw3"
+#FFT_INCS="-I${PREFIX}/include"
+#FFT_LIBS="-L${PREFIX}/lib -lfftw3f -lfftw3"
+FFT_FLAVOR="none"
 
 # Open BLAS
 LINALG_FLAVOR="custom"
@@ -39,13 +40,13 @@ cd "$(dirname "$0")"
 ./configure --prefix=${PREFIX} \
     --enable-mpi="yes" --enable-mpi-io="yes" \
     --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
-    --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
     --with-trio-flavor=netcdf \
     --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
     --with-dft-flavor="wannier90-fallback" \
     --enable-gw-dpc="yes" \
     --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}"
     # --with-mpi-prefix=${PREFIX} \
+    # --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
 
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 

@@ -8,7 +8,8 @@ package:
     version: {{ version }}
 
 build:
-    number: 2
+    number: 3
+    skip: True  # [win]
     rpaths:
       - lib/
       - lib64/
@@ -27,18 +28,19 @@ requirements:
 
   host:
     - openblas
-    - fftw
-    - hdf5
-    - netcdf4
+    #- fftw
+    - hdf5 * nompi_*
+    - libnetcdf * nompi_*
     - netcdf-fortran
     - libxc {{ libxc_version }}
     - {{ mpi }}
 
   run:
+    - libblas * *openblas
     - openblas
-    - fftw
-    - hdf5
-    - netcdf4
+    #- fftw
+    - hdf5 * nompi_*
+    - libnetcdf * nompi_*
     - netcdf-fortran
     - libxc {{ libxc_version }}
     - {{ mpi }}
@@ -53,7 +55,6 @@ test:
   # When I build this recipe, after you run my test suite here, also download and run some_downstream_pkg which depends on my package."
   downstreams:
     - abipy
-
 
 about:
     home: https://www.abinit.org/
