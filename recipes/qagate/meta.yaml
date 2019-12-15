@@ -1,0 +1,45 @@
+{% set name = "qagate" %}
+#{% set version = "1.0.0" %}
+
+package:
+    name: {{ name }}
+    #version: {{ version }}
+
+build:
+    number: 0
+    skip: True  # [win]
+    #rpaths:
+    #  - lib/
+    #  - lib64/
+
+source:
+    #git_tag: {{ version }}
+    git_url: https://github.com/piti-diablotin/qAgate.git
+
+# sudo apt-get install libfreetype6-dev libboost-dev qtbase5-dev qt5-qmake qt5-default libqt5opengl5-dev libssh-dev git
+requirements:
+  host:
+    - {{ compiler('cxx') }}
+    - boost-cpp
+    - qt
+    # 
+  run:
+    - boost-cpp
+    - qt
+
+#test:
+#  commands:
+#    - test -x ${PREFIX}/bin/abinit
+
+#about:
+#    home: https://www.abinit.org/
+#    license: GPL
+#    summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method."
+#    description: |
+#        (for molecules). In addition to the main ABINIT code, different  utility programs are provided.
+#    doc_url: http://www.abinit.org/doc/helpfiles/for-v8.0/users/new_user_guide.html
+#    dev_url: https://github.com/abinit/abinit
+#
+#extra:
+#    recipe-maintainers:
+#        - gmatteo

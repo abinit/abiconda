@@ -31,7 +31,7 @@ requirements:
     - libpng
     - libxml2
     - freetype
-    - eigen
+    - eigen3
     - fftw
     - gnuplot
     - yaml-cpp
@@ -45,7 +45,7 @@ requirements:
     - libpng
     - libxml2
     - freetype
-    - eigen
+    - eigen3
     - fftw
     - gnuplot
     - yaml-cpp
@@ -55,7 +55,7 @@ requirements:
 
 test:
   commands:
-    - test -x ${PREFIX}/bin/abinit
+    - test -x ${PREFIX}/bin/abiout
 
 #about:
 #    home: https://www.abinit.org/
