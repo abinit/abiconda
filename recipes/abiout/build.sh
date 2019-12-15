@@ -12,7 +12,7 @@ export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib $LDFLAGS "
 
 # Max
 #export CXXFLAGS="-g -O2 -fPIC -std=c++11 -isysroot ${CONDA_BUILD_SYSROOT} -I$PREFIX/include $CXXFLAGS"
-export CXXFLAGS="-g -O2 -fPIC -I$PREFIX/include $CXXFLAGS"
+export CXXFLAGS="-g -O2 -fPIC -I$PREFIX/include" # $CXXFLAGS"
 #export CFLAGS="$CFLAGS -g -O2 -fPIC -I$PREFIX/include"
 #export FCFLAGS="-O2 -g -ffree-line-length-none -Wl,-rpath,${CONDA_PREFIX}/lib" 
 # -fPIC or -fpic
@@ -43,18 +43,9 @@ cd "$(dirname "$0")"
 
 ./autogen.sh
 
-./configure 
-
-#./configure --prefix=${PREFIX} \
-#    --enable-mpi="yes" --enable-mpi-io="yes" \
-#    --with-linalg-flavor=${LINALG_FLAVOR} --with-linalg-libs="${LINALG_LIBS}" \
-#    --with-trio-flavor=netcdf \
-#    --with-netcdf-incs="${NC_INCS}" --with-netcdf-libs="${NC_LIBS}" \
-#    --with-dft-flavor="wannier90-fallback" \
-#    --enable-gw-dpc="yes" \
-#    --with-libxc-incs="${XC_INCS}" --with-libxc-libs="${XC_LIBS}"
-#    # --with-mpi-prefix=${PREFIX} \
-#    # --with-fft-flavor=${FFT_FLAVOR} --with-fft-incs="${FFT_INCS}" --with-fft-libs="${FFT_LIBS}" \
+./configure --prefix=${PREFIX} \
+    --with-eigen="${PREFIX}/include/" \
+    --with-spglib="${PREFIX}"
 
 make -j${CPU_COUNT} > make.stdout 2> >(tee make.stderr >&2)
 
@@ -63,6 +54,7 @@ make check
 
 # Install binaries
 make install
+make clean
 
 #unset CFLAGS
 #unset CXXFLAGS

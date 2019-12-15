@@ -14,7 +14,8 @@ build:
 
 source:
     #git_tag: {{ version }}
-    git_url: https://github.com/abinit/abiout.git
+    #git_url: https://github.com/abinit/abiout.git
+    git_url: https://github.com/piti-diablotin/abiout.git
 
 # sudo apt-get install g++ autotools-dev automake autoconf m4 libtool libncurses5-dev libjpeg8-dev libpng-dev libnetcdf-dev libcurl3-dev libfreetype6-dev libglfw3-dev libeigen3-dev fontconfig ttf-ubuntu-font-family libxml2-dev gnuplot-qt libyaml-cpp-dev libfftw3-dev libssh-dev cxxtest
 requirements:
@@ -31,13 +32,14 @@ requirements:
     - libpng
     - libxml2
     - freetype
-    - eigen3
+    - eigen
     - fftw
     - gnuplot
     - yaml-cpp
     - glfw
     - libnetcdf * nompi_*
     - hdf5 * nompi_*
+    - spglib
 
   run:
     - curl
@@ -45,27 +47,30 @@ requirements:
     - libpng
     - libxml2
     - freetype
-    - eigen3
+    - eigen
     - fftw
     - gnuplot
     - yaml-cpp
     - glfw
     - libnetcdf * nompi_*
     - hdf5 * nompi_*
+    - spglib
 
 test:
   commands:
     - test -x ${PREFIX}/bin/abiout
 
-#about:
-#    home: https://www.abinit.org/
-#    license: GPL
-#    summary: "ABINIT is a quantum chemistry software based on the DFT (Density Functional Theory) method."
-#    description: |
-#        (for molecules). In addition to the main ABINIT code, different  utility programs are provided.
-#    doc_url: http://www.abinit.org/doc/helpfiles/for-v8.0/users/new_user_guide.html
-#    dev_url: https://github.com/abinit/abinit
-#
-#extra:
-#    recipe-maintainers:
-#        - gmatteo
+about:
+    home: https://github.com/piti-diablotin/abiout
+    license: GPL
+    summary: "Agate is a tool engine to visualize and post-process data from ab-initio codes."
+    description: |
+        Agate is a tool engine to visualize and post-process data from ab-initio codes. 
+        It is mainly designed to work with the Abinit DFT code. However, it can perfectly read 
+        some VASP files and other commonly used format.
+    doc_url: https://github.com/piti-diablotin/abiout
+    dev_url: https://github.com/piti-diablotin/abiout
+
+extra:
+    recipe-maintainers:
+        - gmatteo
